@@ -84,6 +84,74 @@ public class Cosmetic {
 					+"\nLink: " + link;
 
 		}
+	
+	/**
+	 * Returns a consistent hash code for each Cosmetic by summing the Unicode values
+	 * of each character in the key Key = brand + name
+	 * 
+	 * @return the hash code
+	 */
+	@Override
+	public int hashCode() {
+		int sum = 0;
+		String key = brand + name;
+		for (int i = 0; i < key.length(); i++) {
+			sum += (int) key.charAt(i);
+		}
+		return sum;
+	}
+
+	/**
+	 * Compares two Cosmetic objects to determine ordering Returns 0 if the two
+	 * items are equal Return -1 if this Cosmetic's brand comes alphabetically
+	 * before the C's brand. Returns 1 if the C's name comes alphabetically before
+	 * this cosmetic's name If the two cosmetics' brands are the same, will
+	 * differentiate by names (alphabetical comparison)
+	 * 
+	 * @param C Cosmetic object to compare to this
+	 * @return 0 (same cosmetic), -1 (this cosmetic order first) or 1 (C order
+	 *         first)
+	 */
+	@Override
+	public int compareTo(Cosmetic C) {
+		if (this.equals(C)) {
+			return 0;
+		} else {
+			if (brand.compareTo(C.brand) < 0) {
+				return -1;
+			} else if (brand.compareTo(C.brand) > 0) {
+				return 1;
+			} else {
+				if (name.compareTo(C.name) < 0) {
+					return -1;
+				} else if (name.compareTo(C.name) > 0) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Determines whether two Cosmetic objects are equal by comparing brands and
+	 * names
+	 * 
+	 * @param o the object to compare
+	 * @return whether the Cosmetics are equal
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		} else if (!(o instanceof Cosmetic)) {
+			return false;
+		} else {
+			Cosmetic C = (Cosmetic) o;
+			return brand.equals(C.brand) && name.equals(C.name);
+		}
+	}
 
 }
 

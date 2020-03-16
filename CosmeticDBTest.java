@@ -1,11 +1,12 @@
 
 /**
- * MovieDatabase.java
- * @author Renmei Gao
- * @author Alyssa Reyes
- * CIS 22C, Lab 7
+ * CosmeticDBTest.java
+ * CIS 22C, Final Project
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,9 @@ import java.io.IOException;
 public class CosmeticDBTest {
 	private final int NUM_COSETICS = 25;
 	Hash<Cosmetic> ht = new Hash<>(NUM_COSETICS * 2);
-	BST1<Cosmetic> bst = new BST1<>();
+	BST1<Cosmetic> bst1 = new BST1<>();
+	BST2<Cosmetic> bst2 = new BST2<>();
+	ArrayList<Cosmetic> list = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
 		CosmeticDBTest C = new CosmeticDBTest();
@@ -75,7 +78,9 @@ public class CosmeticDBTest {
 
 			c = new Cosmetic(category, brand, name, price, color);
 			ht.insert(c);
-			bst.insert(c);
+			bst1.insert(c);
+			bst2.insert(c);
+			list.add(c);
 		}
 	}
 
@@ -92,7 +97,7 @@ public class CosmeticDBTest {
 		System.out.print("Enter the color");
 		String color = input.nextLine();
 		Cosmetic add = new Cosmetic(category, brand, name, price, color);
-		bst.insert(add);
+		bst1.insert(add);
 		ht.insert(add);
 		System.out.println("\n" + brand + "\'s " + name + " was added!");
 
@@ -100,13 +105,22 @@ public class CosmeticDBTest {
 
 	public void displaying(Scanner input) {
 		System.out
-				.print("\n" + "Please select one of the following options:\n" + "\n" + "S. Sorted\n" + "U. Unsorted\n");
+				.print("\n" + "Please select one of the following options:\n" + "\nS. Sorted by brands\n" + "P. Sorted by price\n"+"U. Unsorted\n");
 		System.out.print("\nEnter your choice: ");
 		String choice = input.nextLine();
 		System.out.println("\nDisplaying Cosmetics list:");
 		if (choice.equalsIgnoreCase("S")) {
-			bst.inOrderPrint();
+			bst1.inOrderPrint();
 			System.out.println();
+		}
+		
+		if (choice.equalsIgnoreCase("P")) {
+			//bst2.inOrderPrint();
+			BST2 priceCompare = new BST2();
+			Collections.sort(list, priceCompare);
+			for(Cosmetic c: list) {
+				System.out.print(c);
+			}
 		}
 		if (choice.equalsIgnoreCase("U")) {
 			System.out.println(ht);
@@ -128,7 +142,7 @@ public class CosmeticDBTest {
 		name = input.nextLine();
 		Cosmetic remove = new Cosmetic(category, brand, name, price, color);
 		if (ht.search(remove) != -1) {
-			bst.remove(remove);
+			bst1.remove(remove);
 			ht.remove(remove);
 			System.out.println("\n" + brand + "\'s " + name + " was removed!");
 		} else {
@@ -150,7 +164,7 @@ public class CosmeticDBTest {
 		System.out.print("Enter the name: ");
 		name = input.nextLine();
 		Cosmetic search = new Cosmetic(category, brand, name, price, color);
-		if (bst.search(search) == false) {
+		if (bst1.search(search) == false) {
 			System.out.println("\n" + brand + "\'s " + name + " is not in the database.");
 
 		} else {

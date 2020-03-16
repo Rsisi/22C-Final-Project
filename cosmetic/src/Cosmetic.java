@@ -1,5 +1,5 @@
 
-public class Cosmetic {
+public class Cosmetic implements Comparable<Cosmetic>{
 		private String category;
 		private String brand;
 		private String name;

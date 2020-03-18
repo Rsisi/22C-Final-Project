@@ -1,6 +1,6 @@
 
 /**
- * ServiceList.java
+ * Comparable.java
  * 
  * @author Renmei Gao
  * 
@@ -8,7 +8,7 @@
  *         methods to compare two objects with two different subjects
  */
 
-public interface CompareKeys<T> {
+public interface Comparable<T> {
 
 	/**
 	 * Compares this object with the specified object for order.
@@ -17,7 +17,7 @@ public interface CompareKeys<T> {
 	 * @return Returns a negative integer, zero, or a positive integer as this
 	 *         object is less than, equal to, or greater than t he specified object.
 	 */
-	public int ComparePrimeKey(T t);
+	public int compareTo(T t);
 
 	/**
 	 * Compares this object with the specified object for order.

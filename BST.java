@@ -1,12 +1,21 @@
 
 /**
  * BST.java
+ * @author Renmei Gao
+ * 
+ * 
+ * The first Binary Search Tree which extends Interface Comparable.
+ * Manipulates data include insertion, searching, deletion and sorting 
+ * according method compareTo which is defined by comparing brand+name 
+ * inside the Object class.
+ * 
  * CIS 22C Final Project
+ * 
  */
 
 import java.util.NoSuchElementException;
 
-public class BST<T extends CompareKeys<T>>  {
+public class BST<T extends Comparable<T>> {
 	protected class Node {
 		protected T data;
 		protected Node left;
@@ -17,15 +26,19 @@ public class BST<T extends CompareKeys<T>>  {
 			left = null;
 			right = null;
 		}
+
 		public Node getLeft() {
 			return left;
 		}
+
 		public Node getRight() {
 			return right;
 		}
+
 		public void setLeft(Node left) {
 			this.left = left;
 		}
+
 		public void setRight(Node right) {
 			this.right = right;
 		}
@@ -216,7 +229,7 @@ public class BST<T extends CompareKeys<T>>  {
 	private boolean search(T data, Node node) {
 		if (data.equals(node.data)) {
 			return true;
-		} else if (data.ComparePrimeKey(node.data) < 0) {
+		} else if (data.compareTo(node.data) < 0) {
 			if (node.left == null) {
 				return false;
 			}
@@ -258,22 +271,19 @@ public class BST<T extends CompareKeys<T>>  {
 	 *         structural position inside the trees
 	 */
 	private boolean equals(Node node1, Node node2) {
-		if (node1 == null && node2 == null) {// if both of them are null, it'll return true
+		if (node1 == null && node2 == null) {
 			return true;
 
-		} else if (node1 == null || node2 == null) {// if only one of them is null such as reach a leaf, it'll return //
-													// false
+		} else if (node1 == null || node2 == null) {
 			return false;
 
 		} else {
-			// at the end, check whether the two trees contain identical data stored in the
-			// same structural position inside the trees
 			return node1.data.equals(node2.data) && equals(node1.left, node2.left) && equals(node1.right, node2.right);
 		}
 	}
 
 	/*** MUTATORS ***/
-	
+
 	public void serRoot(Node root) {
 		this.root = root;
 	}
@@ -299,7 +309,7 @@ public class BST<T extends CompareKeys<T>>  {
 	 *             to insert
 	 */
 	private void insert(T data, Node node) {
-		if (data.ComparePrimeKey(node.data) <= 0) {
+		if (data.compareTo(node.data) <= 0) {
 			if (node.left == null) {
 				node.left = new Node(data);
 			} else {
@@ -342,9 +352,9 @@ public class BST<T extends CompareKeys<T>>  {
 	private Node remove(T data, Node node) {
 		if (node == null) {
 			return null;
-		} else if (data.ComparePrimeKey(node.data) < 0) {
+		} else if (data.compareTo(node.data) < 0) {
 			node.left = remove(data, node.left);
-		} else if (data.ComparePrimeKey(node.data) > 0) {
+		} else if (data.compareTo(node.data) > 0) {
 			node.right = remove(data, node.right);
 		} else {
 			if (node.left == null && node.right == null) {
@@ -431,7 +441,5 @@ public class BST<T extends CompareKeys<T>>  {
 			System.out.print(node.data);
 		}
 	}
-
-
 
 }

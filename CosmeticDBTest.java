@@ -1,22 +1,19 @@
 
 /**
  * CosmeticDBTest.java
+ * Just for Testing
  * CIS 22C, Final Project
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class CosmeticDBTest {
 	private final int NUM_COSETICS = 25;
-	Hash<Cosmetic> ht = new Hash<>(NUM_COSETICS * 2);
-	BST1<Cosmetic> bst1 = new BST1<>();
-	BST2<Cosmetic> bst2 = new BST2<>();
-	ArrayList<Cosmetic> list = new ArrayList<>();
+	//Hash<Cosmetic> ht = new Hash<>(NUM_COSETICS * 2);
+	BST<Cosmetic> bst1 = new BST<>();
+	BSTSecondary<Cosmetic> bst2 = new BSTSecondary<>();
 
 	public static void main(String[] args) throws IOException {
 		CosmeticDBTest C = new CosmeticDBTest();
@@ -77,10 +74,9 @@ public class CosmeticDBTest {
 			color = input.nextLine();
 
 			c = new Cosmetic(category, brand, name, price, color);
-			ht.insert(c);
+			//ht.insert(c);
 			bst1.insert(c);
 			bst2.insert(c);
-			list.add(c);
 		}
 	}
 
@@ -98,7 +94,7 @@ public class CosmeticDBTest {
 		String color = input.nextLine();
 		Cosmetic add = new Cosmetic(category, brand, name, price, color);
 		bst1.insert(add);
-		ht.insert(add);
+		//ht.insert(add);
 		System.out.println("\n" + brand + "\'s " + name + " was added!");
 
 	}
@@ -115,15 +111,10 @@ public class CosmeticDBTest {
 		}
 		
 		if (choice.equalsIgnoreCase("P")) {
-			//bst2.inOrderPrint();
-			BST2 priceCompare = new BST2();
-			Collections.sort(list, priceCompare);
-			for(Cosmetic c: list) {
-				System.out.print(c);
-			}
+			bst2.inOrderPrint();
 		}
 		if (choice.equalsIgnoreCase("U")) {
-			System.out.println(ht);
+			//System.out.println(ht);
 
 		}
 	}
@@ -141,9 +132,9 @@ public class CosmeticDBTest {
 		System.out.print("Enter the name: ");
 		name = input.nextLine();
 		Cosmetic remove = new Cosmetic(category, brand, name, price, color);
-		if (ht.search(remove) != -1) {
+		if (bst1.search(remove) == true) {
 			bst1.remove(remove);
-			ht.remove(remove);
+			//ht.remove(remove);
 			System.out.println("\n" + brand + "\'s " + name + " was removed!");
 		} else {
 			System.out.println("\nI cannot find " + brand + "\'s " + name + " in the database.");

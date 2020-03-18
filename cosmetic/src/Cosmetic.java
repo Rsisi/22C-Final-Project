@@ -1,5 +1,5 @@
 
-public class Cosmetic implements CompareKeys <Cosmetic>{
+public class Cosmetic implements Comparable <Cosmetic>{
 		private String category;
 		private String brand;
 		private String name;
@@ -114,7 +114,7 @@ public class Cosmetic implements CompareKeys <Cosmetic>{
 	 *         first)
 	 */
 	@Override
-	public int ComparePrimeKey(Cosmetic C) {
+	public int CompareTo(Cosmetic C) {
 		if (this.equals(C)) {
 			return 0;
 		} else {

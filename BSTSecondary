@@ -5,7 +5,7 @@
  *  
  * The second Binary Search Tree which inherited the first BST class.
  * Manipulates data include insertion, searching, deletion and sorting 
- * according method CompareSecondaryKey of the Interface CompareKeys 
+ * according method CompareSecondaryKey of the Interface Comparable 
  * which is defined by comparing prices inside the Object class Cosmetic.
  * 
  * CIS 22C Final Project

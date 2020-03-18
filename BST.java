@@ -1,45 +1,57 @@
 
 /**
- * BST1.java
+ * BST.java
  * CIS 22C Final Project
  */
 
 import java.util.NoSuchElementException;
 
-public class BST1<T extends Comparable<T>> {
-	private class Node {
-		private T data;
-		private Node left;
-		private Node right;
+public class BST<T extends CompareKeys<T>>  {
+	protected class Node {
+		protected T data;
+		protected Node left;
+		protected Node right;
 
 		public Node(T data) {
 			this.data = data;
 			left = null;
 			right = null;
 		}
+		public Node getLeft() {
+			return left;
+		}
+		public Node getRight() {
+			return right;
+		}
+		public void setLeft(Node left) {
+			this.left = left;
+		}
+		public void setRight(Node right) {
+			this.right = right;
+		}
 	}
 
-	private Node root;
+	protected Node root;
 
 	/*** CONSTRUCTORS ***/
 
 	/**
-	 * Default constructor for BST1 sets root to null
+	 * Default constructor for BST sets root to null
 	 */
-	public BST1() {
+	public BST() {
 		root = null;
 	}
 
 	/**
-	 * Copy constructor for BST1
+	 * Copy constructor for BST
 	 * 
-	 * @param BST1 the BST1 to make a copy of
+	 * @param BST the BST to make a copy of
 	 */
-	public BST1(BST1<T> BST1) {
-		if (BST1.root == null) {
+	public BST(BST<T> BST) {
+		if (BST.root == null) {
 			root = null;
 		} else {
-			copyHelper(BST1.root);
+			copyHelper(BST.root);
 		}
 	}
 
@@ -65,11 +77,11 @@ public class BST1<T extends Comparable<T>> {
 	 * @return the data stored in the root
 	 * @throws NoSuchElementException when precondition is violated
 	 */
-	public T getRoot() throws NoSuchElementException {
+	public Node getRoot() throws NoSuchElementException {
 		if (isEmpty()) {
 			throw new NoSuchElementException("Error for getRoot. Tree is empty.");
 		}
-		return root.data;
+		return root;
 	}
 
 	/**
@@ -204,7 +216,7 @@ public class BST1<T extends Comparable<T>> {
 	private boolean search(T data, Node node) {
 		if (data.equals(node.data)) {
 			return true;
-		} else if (data.compareTo(node.data) < 0) {
+		} else if (data.ComparePrimeKey(node.data) < 0) {
 			if (node.left == null) {
 				return false;
 			}
@@ -229,10 +241,10 @@ public class BST1<T extends Comparable<T>> {
 	public boolean equals(Object o) {
 		if (o == this) {
 			return true;
-		} else if (!(o instanceof BST1)) {
+		} else if (!(o instanceof BST)) {
 			return false;
 		} else {
-			BST1<T> b = (BST1<T>) o;
+			BST<T> b = (BST<T>) o;
 			return equals(root, b.root);
 		}
 	}
@@ -240,17 +252,19 @@ public class BST1<T extends Comparable<T>> {
 	/**
 	 * Helper method for the equals method
 	 * 
-	 * @param node1 the node of the first BST1
-	 * @param node2 the node of the second BST1
+	 * @param node1 the node of the first BST
+	 * @param node2 the node of the second BST
 	 * @return whether the two trees contain identical data stored in the same
 	 *         structural position inside the trees
 	 */
 	private boolean equals(Node node1, Node node2) {
 		if (node1 == null && node2 == null) {// if both of them are null, it'll return true
 			return true;
-		} else if (node1 == null || node2 == null) {// if only one of them is null such as reach a leaf, it'll return
+
+		} else if (node1 == null || node2 == null) {// if only one of them is null such as reach a leaf, it'll return //
 													// false
 			return false;
+
 		} else {
 			// at the end, check whether the two trees contain identical data stored in the
 			// same structural position inside the trees
@@ -259,6 +273,10 @@ public class BST1<T extends Comparable<T>> {
 	}
 
 	/*** MUTATORS ***/
+	
+	public void serRoot(Node root) {
+		this.root = root;
+	}
 
 	/**
 	 * Inserts a new node in the tree
@@ -281,7 +299,7 @@ public class BST1<T extends Comparable<T>> {
 	 *             to insert
 	 */
 	private void insert(T data, Node node) {
-		if (data.compareTo(node.data) <= 0) {
+		if (data.ComparePrimeKey(node.data) <= 0) {
 			if (node.left == null) {
 				node.left = new Node(data);
 			} else {
@@ -297,7 +315,7 @@ public class BST1<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Removes a value from the BST1
+	 * Removes a value from the BST
 	 * 
 	 * @param data the value to remove
 	 * @precondition !isEmpty()
@@ -324,9 +342,9 @@ public class BST1<T extends Comparable<T>> {
 	private Node remove(T data, Node node) {
 		if (node == null) {
 			return null;
-		} else if (data.compareTo(node.data) < 0) {
+		} else if (data.ComparePrimeKey(node.data) < 0) {
 			node.left = remove(data, node.left);
-		} else if (data.compareTo(node.data) > 0) {
+		} else if (data.ComparePrimeKey(node.data) > 0) {
 			node.right = remove(data, node.right);
 		} else {
 			if (node.left == null && node.right == null) {
@@ -413,4 +431,7 @@ public class BST1<T extends Comparable<T>> {
 			System.out.print(node.data);
 		}
 	}
+
+
+
 }

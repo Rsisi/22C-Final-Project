@@ -8,7 +8,18 @@ public class Cosmetic implements Comparable <Cosmetic>{
 		private String link;
 		private String occasion;
 		private String review;
-
+		
+		/**
+		 * Constructor for the Cosmetic class
+		 * @param category the category of a cosmetic
+		 * @param brand the brand of a cosmetic
+		 * @param name the name of a cosmetic
+		 * @param price the price of a cosmetic
+		 * @param color the price of a cosmetic
+		 * @param link the price of a cosmetic
+		 * @param occasion the suitable occasion of a cosmetic
+		 * @param review the review of a cosmetic
+		 */
 		public Cosmetic(String category, String brand, String name, double price,
 				String color, String link, String occasion, String review) {
 			this.category = category;
@@ -22,58 +33,125 @@ public class Cosmetic implements Comparable <Cosmetic>{
 		}
 
 		/**mutator**/
+		/**
+		 * set category to the class 
+		 * @param category a String
+		 */
 		public void setCategory(String category) {
 			this.category = category;
 		}
+		/**
+		 * set brand to the class 
+		 * @param brand a String
+		 */
 		public void setBrand(String brand) {
 			this.brand = brand;
 		}
+		/**
+		 * set name to the class 
+		 * @param name a String
+		 */
 		public void setName(String name) {
 			this.name = name;
 		}
+		/**
+		 * set price to the class 
+		 * @param price a double
+		 */
 		public void setPrice(double price) {
 			this.price = price;
 		}
+		/**
+		 * set color to the class 
+		 * @param color a String
+		 */
 		public void setColor(String color) {
 			this.color = color;
 		}
+		/**
+		 * set link to the class 
+		 * @param link a String
+		 */
 		public void setLink(String link) {
 			this.link = link;
 		}
+		/**
+		 * set occasion to the class 
+		 * @param occasion a String
+		 */
 		public void setOccasion(String occasion) {
 			this.occasion = occasion;
 		}
+		/**
+		 * set review to the class 
+		 * @param review a String
+		 */
 		public void setReviwe(String review) {
 			this.review = review;	
 		}
 
 		/**accessor**/
+	   /**
+	    * Returns the category 
+	    * @return category 
+	    */
 		public String getCategory() {
 			return category;
 		}
+	   /**
+	    * Returns the brand
+	    * @return brand
+	    */
 		public String getBrand() {
 			return brand;
 		}
+	   /**
+	    * Returns the name
+	    * @return name  
+	    */
 		public String getName() {
 			return name;
 		}
+	   /**
+	    * Returns the price
+	    * @return price 
+	    */
 		public double getPrice() {
 			return price;
 		}
+	   /**
+	    * Returns the color
+	    * @return color
+	    */
 		public String getColor() {
 			return color;
 		}
+	   /**
+	    * Returns the link of cosmetic website 
+	    * @return link 
+	    */
 		public String getLink() {
 			return link;
 		}
+	   /**
+	    * Returns the occasion
+	    * @return occasion
+	    */
 		public String getOccasion() {
 			return occasion;
 		}
+	   /**
+	    * Returns the review 
+	    * @return review 
+	    */
 		public String getReview() {
 			return review;
 		}
 
 		/**additional operation**/
+		/**
+		 * Creates a String of the Cosmetic information
+		 */
 		@Override public String toString() {
 			return "\nCategory: " + category
 					+"\nBrand: " + brand

@@ -1,14 +1,3 @@
-/**
- * Defines a doubly-linked list class
- * @author Alyssa Reyes
- * 
- * This class defines a doubly-linked list class whose methods will 
- * be utilized in the hash class to achieve separate chaining for collision 
- * occurrences.
- * 
- * CIS 22C, Course Project
- */
-
 import java.util.NoSuchElementException;
 
 public class List<T extends Comparable<T>>  {
@@ -166,41 +155,6 @@ public class List<T extends Comparable<T>>  {
     
     
     /**
-     * Determines whether a List is sorted
-     * by calling its recursive helper method
-     * isSorted
-     * Note: An empty List can be
-     * considered to be (trivially) sorted
-     * @return whether this List is sorted
-     */
-    public boolean inSortedOrder() {
-        return inSortedOrder(first);
-    }
-
-    /**
-     * Helper method to inSortedOrder
-     * Determines whether a List is
-     * sorted in ascending order recursively
-     * @return whether this List is sorted
-     */
-    private boolean inSortedOrder(Node node) {
-    	if(node == null) { 
-    		return true;     		
-    	} else if(node.next == null) { 
-    		return node.data.compareTo(node.prev.data) > 0; 
-    	} else { 
-    		Node temp = node; 
-    		node = node.next;
-    		if(temp.data.compareTo(node.data) < 0) {
-    			return inSortedOrder(node); 
-    		} else {
-    			return false;
-    		}
-    	}
-    }
-    
-    
-    /**
      * Returns the index of the iterator
      * from 1 to n. Note that there is
      * no index 0. Does not use recursion.
@@ -249,64 +203,6 @@ public class List<T extends Comparable<T>>  {
 		return -1;
 	}
 
-	
-	/**
-     * Returns the index from 1 to length
-     * where value is located in the List
-     * by calling the private helper method
-     * binarySearch
-     * @param value the value to search for
-     * @return the index where value is
-     * stored from 1 to length, or -1 to
-     * indicate not found
-     * @precondition isSorted()
-     * @postcondition the position of the
-     * iterator must remain unchanged!
-     * @throws IllegalStateException when the
-     * precondition is violated.
-     */
-    public int binarySearch(T value) throws IllegalStateException {
-    	if(!inSortedOrder()) { 
-    		throw new IllegalStateException("binarySearch(): Cannot search an"
-    				+ " unsorted list.");
-    	} else { 	
-    		return binarySearch(0, length, value);
-    	}
-    }
-   
-    /**
-     * Searches for the specified value in
-     * the List by implementing the recursive
-     * binarySearch algorithm
-     * @param low the lowest bounds of the search
-     * @param high the highest bounds of the search
-     * @param value the value to search for
-     * @return the index at which value is located
-     * or -1 to indicate not found
-     * @postcondition the location of the iterator
-     * must remain unchanged
-     */
-    private int binarySearch(int low, int high, T value) {
-    	if(high < low) { 
-    		return -1; 
-    	} 
-    	int mid = low + (high - low) / 2; 
-    	Node temp = first; 
-    	int counter = 1; 
-    	while (counter < mid) { 
-    		temp = temp.next; 
-    		counter++; 
-    	}
-    	if(temp.data.equals(value)) { 
-    		return mid; 
-    	} else if (temp.data.compareTo(value) < 0) { 
-    		return binarySearch(mid + 1, high, value); 
-    	} else { 
-    		return binarySearch(low, mid - 1, value); 
-    	}
-        
-    }
-    
    
     /****MUTATORS****/
    
@@ -516,37 +412,6 @@ public class List<T extends Comparable<T>>  {
     	   temp = temp.next; 
        }
        return result; 
-    }
-    
-    
-    /**
-     * Prints a linked list to the console
-     * in reverse by calling the private
-     * recursive helper method printInReverse
-     */
-    public void printInReverse() throws  NoSuchElementException {
-       printInReverse(last); 
-    }
-   
-    
-    /**
-     * Recursively prints a linked list to the console
-     * in reverse order from last to first (no loops)
-     * Each element separated by a space
-     * Should print a new line after all
-     * elements have been displayed
-     */   
-    private void printInReverse(Node node) {
-    	if(node == null) {  	  
-        	System.out.println(); 
-    	} else if(node == first){ 
-    		System.out.print(node.data + " ");
-    		System.out.println();
-    	} else {
-    		System.out.print(node.data + " ");
-        	printInReverse(node.prev); 
-        }
     } 
-     
    
 }

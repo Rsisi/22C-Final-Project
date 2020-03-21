@@ -329,6 +329,29 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		}
 	}
 	
+	public void insertByPrice(T data) {
+		if (root == null) {
+			root = new Node(data);
+		} else {
+			insertByPrice(data, root);
+		}
+	}
+	private void insertByPrice(T data, Node node) {
+		if (data.CompareSecondaryKey(node.data) <= 0) {
+			if (node.left == null) {
+				node.left = new Node(data);
+			} else {
+				insertByPrice(data, node.left);
+			}
+		} else {
+			if (node.right == null) {
+				node.right = new Node(data);
+			} else {
+				insertByPrice(data, node.right);
+			}
+		}
+	}
+	
 	public void insertAll(BST<T> bst) {
 		if(bst.isEmpty()||bst==null) {
 			return;

@@ -1,4 +1,3 @@
-
 /**
  * BSTSecondary.java
  * @author Renmei Gao
@@ -13,7 +12,7 @@
 
 import java.util.NoSuchElementException;
 
-public class BSTSecondary<T extends Comparable<T> & Contain & FileOutPutFormat> extends BST<T> {
+public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> extends BST<T> {
 
 	/*** CONSTRUCTORS ***/
 

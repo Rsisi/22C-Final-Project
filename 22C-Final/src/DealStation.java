@@ -1,6 +1,6 @@
 
 /**
- * main.java
+ * DealStation.java
  * Just for Testing
  * CIS 22C, Final Project
  */
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class DealStation {
 	private final int NUM_COSETICS = 25;
 	Hash<Cosmetic> ht = new Hash<>(NUM_COSETICS * 2);
 	BST<Cosmetic> bst1 = new BST<>();
-	BST<Cosmetic> bst2 = new BST<>();
+	BSTSecondary<Cosmetic> bst2 = new BSTSecondary<>();
 	Hash<user> userHash = new Hash<>(100);
 	Hash<user> managerHash = new Hash<>(100);
 
@@ -87,7 +87,7 @@ public class Main {
 			c = new Cosmetic(category, brand, name, price, color, link, occ, review);
 			ht.insert(c);
 			bst1.insert(c);
-			bst2.insertByPrice(c);
+			bst2.insert(c);
 		}
 	}
 

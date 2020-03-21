@@ -1,4 +1,13 @@
-public class Customer {
+/**
+ * Customer.java
+ * @author 
+ * 
+ * This class defines functions for a customer to add, delete, and
+ * search for products that are recommended to them.
+ * 
+ * CIS 22C, Course Project
+ */
+public class Customer extends User {
 	private String occasion;
 	private String color;
 	

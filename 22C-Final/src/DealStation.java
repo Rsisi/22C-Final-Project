@@ -127,7 +127,7 @@ public class DealStation {
 	public void managerInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String chooice = "";
-		System.out.println("Cosmetics Deal Space Station Management system lgoin as "+ id);
+		System.out.println("Cosmetics Deal Station Management system lgoin as "+ id);
 
 		while (!chooice.equals("6")) {
 			System.out.println(
@@ -159,7 +159,7 @@ public class DealStation {
 	public void userInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String chooice = "";
-		System.out.println("\nWelcome "+id+" to Cosmetics Deal Space Station!\n");
+		System.out.println("\nWelcome "+id+" to Cosmetics Deal Station!\n");
 		while (!chooice.equals("4")) {
 			System.out.println("\n1.Display product" + "\n2.Search" + "\n3.Get PromoCode" +"\n4.Logout");
 			System.out.print("\nEnter you chooise:");
@@ -229,7 +229,7 @@ public class DealStation {
 		int pass = -1;
 		String chooice = "";
 		while (!chooice.equals("1")&&!chooice.equals("2")&&!chooice.equals("3")) {
-			System.out.println("\nWelcome to Cosmetics Deal Space Station!\n");
+			System.out.println("\nWelcome to Cosmetics Deal Station!\n");
 			System.out.println("\n1.Login\n2.Registered\n3.Continue as the guest");
 			System.out.print("\nEnter your chooice: ");
 			chooice = input.nextLine();
@@ -531,7 +531,7 @@ public class DealStation {
 		int i = r.nextInt(code.length);
 		System.out.println("Congradulations! You got your personal offer Promotion code:\n" + code[i]
 				+ "\nYou can use the code when you buying your love products on the official website and get "
-				+ code[i].substring(code[i].length() - 2) + "percent off! Enjoy!");
+				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!");
 
 	}
 

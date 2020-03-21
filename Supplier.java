@@ -1,5 +1,13 @@
-
-public class Supplier {
+/**
+ * Supplier.java
+ * @author 
+ * 
+ * This class defines functions for a supplier to add, delete, and
+ * search for products that customers can find in the database recommendations.
+ * 
+ * CIS 22C, Course Project
+ */
+public class Supplier extends User {
 	private String brand;
 	
 	/**

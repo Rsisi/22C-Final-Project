@@ -42,7 +42,7 @@ public class DealStation {
 				C.managerInterface(id);
 				System.out.print("\nPress any key to return to the Login page or press 1 to exit: ");
 				choice = input.nextLine();
-			} else if (id.contains("User")||id.equals("Guest")) {
+			} else if (id.contains("User") || id.equals("Guest")) {
 				C.userInterface(id);
 				System.out.print("\nPress any key to return to the Login page or press 1 to exit: ");
 				choice = input.nextLine();
@@ -66,19 +66,19 @@ public class DealStation {
 		ArrayList<String> occ;
 		Cosmetic c;
 		while (input.hasNextLine()) {
-			category = input.nextLine();		
-			brand = input.nextLine();			
-			name = input.nextLine();			
-			price = input.nextDouble();			
+			category = input.nextLine();
+			brand = input.nextLine();
+			name = input.nextLine();
+			price = input.nextDouble();
 			input.nextLine();
-			color = input.nextLine();			
-			occNum = input.nextInt();			
+			color = input.nextLine();
+			occNum = input.nextInt();
 			input.nextLine();
 			occ = new ArrayList<>();
 			for (int i = 0; i < occNum; i++) {
 				occ.add(input.nextLine().toLowerCase());
-			}			
-			review = input.nextLine();			
+			}
+			review = input.nextLine();
 			link = input.nextLine();
 			if (input.hasNextLine()) {
 				input.nextLine();
@@ -122,36 +122,32 @@ public class DealStation {
 
 	}
 
-	
-
 	public void managerInterface(String id) {
 		Scanner input = new Scanner(System.in);
-		String chooice = "";
-		System.out.println("\n*** Deal Station Management System ***\n"+
-"\nWelcome! "+ id);
+		String choice = "";
+		System.out.println("\n*** Deal Station Management System*** \n" + "\nWelcome! " + id);
 
-		while (!chooice.equals("6")) {
+		while (!choice.equals("6")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println(
-					"1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product" + "\n4. Edit a product"
-					+ "\n5. Add a new manager" + "\n6. Logout");
+			System.out.println("1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product"
+					+ "\n4. Edit a product" + "\n5. Add a new manager" + "\n6. Logout");
 			System.out.print("\nEnter you choice: ");
-			chooice = input.nextLine();
-			if (chooice.equals("1")) {
+			choice = input.nextLine();
+			if (choice.equals("1")) {
 				displaying(input);
-			} else if (chooice.equals("2")) {
+			} else if (choice.equals("2")) {
 				adding(input);
-			} else if (chooice.equals("3")) {
+			} else if (choice.equals("3")) {
 				delate(input);
-			} else if (chooice.equals("4")) {
+			} else if (choice.equals("4")) {
 				editing(input);
-			} else if(chooice.equals("5")) {
+			} else if (choice.equals("5")) {
 				user u = registeredInterface(input, 2);
 				managerHash.insert(u);
-				System.out.println("\nManager "+u.getUserName()+" has Added!");
+				System.out.println("\nManager " + u.getUserName() + " has Added!");
 			}
-			
-			else if (chooice.equals("6")) {
+
+			else if (choice.equals("6")) {
 				System.out.println("\nThank you and see you next time!");
 			} else {
 				System.out.println("\nInvalid Selection!\n");
@@ -161,20 +157,21 @@ public class DealStation {
 
 	public void userInterface(String id) {
 		Scanner input = new Scanner(System.in);
-		String chooice = "";
-		System.out.println("\nHi "+id.substring(5)+"! Welcome to Cosmetics Deal Station!\n");
-		while (!chooice.equals("4")) {
+		String choice = "";
+		System.out.println("\nHi " + id.substring(5) + "! Welcome to Cosmetics Deal Station!\n");
+		while (!choice.equals("4")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println("1. Review products" + "\n2. Search a product" + "\n3. Get PromotionCode" +"\n4. Logout");
-			System.out.print("\nEnter you choice:");
-			chooice = input.nextLine();
-			if (chooice.equals("1")) {
+			System.out
+					.println("1. Review products" + "\n2. Search a product" + "\n3. Get PromotionCode" + "\n4. Logout");
+			System.out.print("\nEnter you choice: ");
+			choice = input.nextLine();
+			if (choice.equals("1")) {
 				displaying(input);
-			} else if (chooice.equals("2")) {
+			} else if (choice.equals("2")) {
 				searchInterface(input);
-			} else if (chooice.equals("3")) {
+			} else if (choice.equals("3")) {
 				getPromoCode();
-			} else if (chooice.equals("4")) {
+			} else if (choice.equals("4")) {
 				System.out.println("\nThank you for using our program!\n");
 			} else {
 				System.out.println("\nWrong input! Only digit 1, 2, 3 or 4 to exit.");
@@ -197,7 +194,7 @@ public class DealStation {
 			} else if (choice.equals("2")) {
 				userSmartSearchInterface(input);
 			} else if (choice.equals("3")) {
-				
+
 			} else {
 				System.out.println("\nWrong input! Only digit 1, 2 or 3 to exit\n");
 			}
@@ -208,36 +205,34 @@ public class DealStation {
 		String choice = "";
 		while (!choice.equalsIgnoreCase("x")) {
 			System.out.println("\nWelcome to our Smart Search Program!\n"
-					+ "Multiple keywords search. You can enter: \n\n*category + brand(split by a comma\",\")\n*category + occasion(split by a comma\",\")\n"
+					+ "\nMultiple keywords search. You can enter: \n*category + brand(split by a comma\",\")\n*category + occasion(split by a comma\",\")\n"
 					+ "*X to Exit");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (!choice.equalsIgnoreCase("x")) {
-				String[] chooiceArray = choice.split(",");
+				String[] choiceArray = choice.split(",");
 				BST<Cosmetic> ss = bst1;
-				for (int i = 0; i < chooiceArray.length; i++) {
-					ss = ss.Contain(chooiceArray[i]);
+				for (int i = 0; i < choiceArray.length; i++) {
+					ss = ss.Contain(choiceArray[i]);
 				}
-				if (ss==null||ss.isEmpty()) {
+				if (ss == null || ss.isEmpty()) {
 					System.out.println("\nSorry, the product you want is not in our database.\n");
-				}else{
+				} else {
 					ss.inOrderPrint();
 				}
-				
-
-				System.out.print("\nPress any key to keep searching or X to exit: ");
-				choice = input.nextLine();
 			}
+
+			System.out.print("\nPress any key to keep searching or X to exit: ");
+			choice = input.nextLine();
 
 		}
 	}
-
 
 	public String loginInterface(Scanner input) {
 		int pass = -1;
 		String choice = "";
 		while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
-			System.out.println("\n***Welcome to Cosmetics Deal Station!***\n");
+			System.out.println("\n*** Welcome to Cosmetics Deal Station! ***\n");
 			System.out.println("\n1. Login\n2. Register\n3. Continue as a guest");
 			System.out.print("\nEnter your choice: ");
 			choice = input.nextLine();
@@ -281,7 +276,6 @@ public class DealStation {
 		return "";
 	}
 
-	
 	public int checkuser(user u) {
 		if (userHash.check(u)) {
 			return 1;
@@ -291,39 +285,37 @@ public class DealStation {
 			return -1;
 		}
 	}
+
 	public user registeredInterface(Scanner input, int i) {
 		boolean pass = false;
 		String username = "";
 		String password = "";
 		String password2;
-		if(i == 1) {
-			System.out.println("\nWelcome become our menbership");
+		if (i == 1) {
+			System.out.println("\nWelcome to Deal Station!");
+		} else {
+			System.out.println("\nWelcome to Deal Station! Now you can add a manager account!");
 		}
-		else {
-			System.out.println("\nWelcome to add manager");
-		}
-		
-		while(!pass) {	
-			System.out.print("Enter new username: ");
-			 username = input.nextLine();
-			System.out.print("Enter new password: ");
-			 password = input.nextLine();
-			System.out.print("Repeat enter new password:");
-			 password2 = input.nextLine();
-			if(password.equals("")||username.equals("")) {
-				System.out.println("\npasswoed can not be empty\n");
-			}
-			else if(password.equals(password2)) {
+
+		while (!pass) {
+			System.out.print("\nEnter your new username: ");
+			username = input.nextLine();
+			System.out.print("Create your password: ");
+			password = input.nextLine();
+			System.out.print("Re-enter the password: ");
+			password2 = input.nextLine();
+			if (password.equals("") || username.equals("")) {
+				System.out.println("\nPassword cannot be empty!\n");
+			} else if (password.equals(password2)) {
 				pass = true;
-			}
-			else {
-				System.out.println("\nThe two passwords are different, please try again\n");
+			} else {
+				System.out.println("\nThe two passwords are different, please try it again!");
 			}
 		}
-		
-		user u = new user(username,password);
+
+		user u = new user(username, password);
 		return u;
-		
+
 	}
 
 	public void adding(Scanner input) {
@@ -399,7 +391,7 @@ public class DealStation {
 		String color = "";
 		String link = "";
 		String review = "";
-		String chooice = "";
+		String choice = "";
 
 		System.out.println("\nEditing for a Cosmetic!\n");
 		System.out.print("Enter the brand: ");
@@ -414,66 +406,66 @@ public class DealStation {
 			ht.remove(c);
 			System.out.println(c);
 
-			while (!chooice.equalsIgnoreCase("x")) {
+			while (!choice.equalsIgnoreCase("x")) {
 				System.out.print("Which part want edit(Example:name;x to Exit):");
-				chooice = input.nextLine();
-				if (chooice.equalsIgnoreCase("category")) {
+				choice = input.nextLine();
+				if (choice.equalsIgnoreCase("category")) {
 					System.out.print("Enter new category:");
 					category = input.nextLine();
 					System.out.print(
 							"Confirm change category from " + c.getCategory() + " to " + category + ". (yes or no)");
-					chooice = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					choice = input.nextLine();
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setCategory(category);
 					}
-				} else if (chooice.equalsIgnoreCase("brand")) {
+				} else if (choice.equalsIgnoreCase("brand")) {
 					System.out.print("Enter new brand:");
 					brand = input.nextLine();
 					System.out.print("Confirm change brand from " + c.getBrand() + " to " + brand + ". (yes or no)");
-					chooice = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					choice = input.nextLine();
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setBrand(brand);
 					}
-				} else if (chooice.equalsIgnoreCase("name")) {
+				} else if (choice.equalsIgnoreCase("name")) {
 					System.out.print("Enter new name:");
 					name = input.nextLine();
 					System.out.print("Confirm change name from " + c.getName() + " to " + name + ". (yes or no)");
-					chooice = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					choice = input.nextLine();
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setName(name);
 					}
-				} else if (chooice.equalsIgnoreCase("price")) {
+				} else if (choice.equalsIgnoreCase("price")) {
 					System.out.print("Enter new price:");
 					price = input.nextDouble();
 					input.nextLine();
 					System.out.print("Confirm change price from " + c.getPrice() + " to " + price + ". (yes or no)");
-					chooice = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					choice = input.nextLine();
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setPrice(price);
 					}
-				} else if (chooice.equalsIgnoreCase("color")) {
+				} else if (choice.equalsIgnoreCase("color")) {
 					System.out.print("Enter new color:");
 					color = input.nextLine();
 					System.out.print("Confirm change color from " + c.getColor() + " to " + color + ". (yes or no)");
 					color = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setColor(color);
 					}
-				} else if (chooice.equalsIgnoreCase("link")) {
+				} else if (choice.equalsIgnoreCase("link")) {
 					System.out.print("Enter new link:");
 					link = input.nextLine();
 					System.out.print("Confirm change link from " + c.getLink() + "\nto\n" + link + ". (yes or no)");
 					link = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setLink(link);
 					}
-				} else if (chooice.equalsIgnoreCase("review")) {
+				} else if (choice.equalsIgnoreCase("review")) {
 					System.out.print("Enter new link:");
 					review = input.nextLine();
 					System.out
 							.print("Confirm change review from " + c.getReview() + "\nto\n" + review + ". (yes or no)");
 					review = input.nextLine();
-					if (chooice.equalsIgnoreCase("yes")) {
+					if (choice.equalsIgnoreCase("yes")) {
 						c.setReview(review);
 					}
 				} else {
@@ -534,7 +526,7 @@ public class DealStation {
 		String[] code = { "BEAUTY25", "SPRING20", "LUCKY15", "AWESOME10" };
 		Random r = new Random();
 		int i = r.nextInt(code.length);
-		System.out.println("Congradulations! You got your personal offer Promotion code:\n" + code[i]
+		System.out.println("Congradulations! You got your personal Promotion Code:\n" + code[i]
 				+ "\nYou can use the code when you buying your love products on the official website and get "
 				+ code[i].substring(code[i].length() - 2) + "percent off! Enjoy!");
 
@@ -558,7 +550,6 @@ public class DealStation {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 
 	}
 }

@@ -102,7 +102,7 @@ public class Cosmetic implements Comparable<Cosmetic>, Contain,FileOutPutFormat 
 	/** additional operation **/
 	@Override
 	public String toString() {
-		return "\nCategory: " + category + "\nBrand: " + brand + "\nName " + name + "\nPrice: $"
+		return "\nCategory: " + category + "\nBrand: " + brand + "\nName: " + name + "\nPrice: $"
 				+ String.format("%,.2f", price) + "\nColor: " + color + "\nReview: " + review + "\nLink: " + link;
 
 	}

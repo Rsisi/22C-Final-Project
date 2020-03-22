@@ -5,6 +5,7 @@
  * CIS 22C, Final Project
  */
 package Station;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import IOPackage.FileIO;
 import UserPackage.User;
 
 public class DealStation {
-	private Hash<Cosmetic> ht ;
+	private Hash<Cosmetic> ht;
 	private BST<Cosmetic> bstBrand;
 	private BSTSecondary<Cosmetic> bstPrice;
 	private Hash<User> customerHash;
@@ -47,10 +48,8 @@ public class DealStation {
 		input.close();
 
 	}
-	
-	
 
-	public void populateData() {		
+	public void populateData() {
 		Scanner input;
 		try {
 			File file = new File("Cosmetics.txt");
@@ -72,7 +71,7 @@ public class DealStation {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
 
 	public void managerInterface(String id) {
@@ -83,8 +82,9 @@ public class DealStation {
 
 		while (!choice.equals("6")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println("1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product" + "\n4. Edit a product"+ "\n5. Add a new manager" + "\n6. Logout");
-			System.out.print("\nEnter you chooise:");
+			System.out.println("1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product"
+					+ "\n4. Edit a product" + "\n5. Add a new manager" + "\n6. Logout");
+			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (choice.equals("1")) {
 				displaying(input);
@@ -97,11 +97,11 @@ public class DealStation {
 			} else if (choice.equals("5")) {
 				User u = registeredInterface(input, 2);
 				managerHash.insert(u);
-				System.out.println("\nManager " + u.getUserName() + " has Added");
+				System.out.println("\nManager " + u.getUserName() + " has Added!");
 			}
 
 			else if (choice.equals("6")) {
-				System.out.println("\nThank you for your work!");
+				System.out.println("\nThank you and see you next time!");
 			} else {
 				System.out.println("\nInvalid Selection!\n");
 			}
@@ -116,9 +116,9 @@ public class DealStation {
 		printInTable("♡", "♡", " ", "Hi " + id + "! Welcome Back!", 60, 4);
 		while (!choice.equals("6")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println("1. Review products" + "\n2. Search a product" + "\n3. Get the Promotion Code"  + "\n4. Check Current WishList"
-					+ "\n5. Printout Current WishList" + "\n6. Eixt");
-			System.out.print("\nEnter you chooise:");
+			System.out.println("1. Review products" + "\n2. Search a product" + "\n3. Get the Promotion Code"
+					+ "\n4. Check Current WishList" + "\n5. Printout Current WishList" + "\n6. Eixt");
+			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (choice.equals("1")) {
 				displaying(input);
@@ -130,26 +130,23 @@ public class DealStation {
 				System.out.println("Hi " + id + ", Here is your current WishList");
 				wishList.inOrderPrint();
 			} else if (choice.equals("5")) {
-				if(wishList.isEmpty()) {
-					System.out.println("Sorry, Wish List is empty! You did not add any cosmetic in wish list.");
+				if (wishList.isEmpty()) {
+					System.out.println("Sorry, WishList is empty. You did not add any cosmetic in it!");
+				} else {
+					String fileName = io.writeWishListToFile(wishList, id, "");
+					System.out.println("\nYour WishList has already saved to the file " + fileName + " !");
 				}
-				else {
-					String fileName = io.writeWishListToFile(wishList, id,"");
-					System.out.println("\nYour WishList has already output to file " + fileName + " !");
-				}
-				
-				
+
 			} else if (choice.equals("6")) {
 				System.out.println("\nThank you for your visit!");
-				if(wishList.isEmpty()) {
-					System.out.println("Your Wish List is empty! Wish you next time find the product you want!");
-				}
-				else {
-					String fileName = io.writeWishListToFile(wishList, id,getPromoCode());
-					System.out.println("\nYour WishList has already output to file " + fileName + " !");
+				if (wishList.isEmpty()) {
+					System.out.println("Your WishList is empty! Hope you can find the product you want next time!");
+				} else {
+					String fileName = io.writeWishListToFile(wishList, id, getPromoCode());
+					System.out.println("\nYour WishList has already saved to file " + fileName + " !");
 				}
 			} else {
-				System.out.println("\nWrong input! Only digit 1, 2, 3 or 4 to exit\n");
+				System.out.println("\nWrong input! Only digit 1-5 or 6 to exit\n");
 			}
 		}
 
@@ -157,10 +154,11 @@ public class DealStation {
 
 	public BST<Cosmetic> searchInterface(Scanner input, BST<Cosmetic> wishList) {
 		String choice = "";
-		System.out.println("\nStart to search for a Cosmetic!");
+		System.out.println("");
+		printInTable("|", "+", " ", "Start to search for a Cosmetic!", 60, 2);
 
 		while (!choice.equals("3")) {
-			System.out.println("Please select from the menu: ");
+			System.out.println("\nPlease select from the menu: ");
 			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Exit");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
@@ -199,7 +197,7 @@ public class DealStation {
 					System.out.println("\nSorry, The product you want is not in our database\n");
 				} else {
 					ss.inOrderPrint();
-					System.out.print("\nDo you want add this list to your wishlist(yes or no)");
+					System.out.print("\nDo you want to add this list to your WishList?(yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						wishList.insertAll(ss);
@@ -244,13 +242,12 @@ public class DealStation {
 							customerHash.insert(u1);
 							pass = 1;
 							return "1 " + u1.getUserName();
-						}
-						else if(tryagain.equals("f")) {
+						} else if (tryagain.equals("f")) {
 							User u2 = resetPasswd(input);
-							if(u2!=null) {
-								pass =1;
+							if (u2 != null) {
+								pass = 1;
 								return "1 " + u2.getUserName();
-								
+
 							}
 						}
 					}
@@ -268,40 +265,40 @@ public class DealStation {
 
 		}
 		return "";
-		
+
 	}
-	
+
 	public User resetPasswd(Scanner input) {
 		String choice = "";
-		while(!choice.equals("x")) {
+		while (!choice.equals("x")) {
 			System.out.print("\nEnter your Member account: ");
 			String username = input.nextLine();
 			System.out.print("Enter your email: ");
 			String email = input.nextLine();
-			System.out.print("Answer following question to check Security Answer.\nWho is your bestfriend in your childhood?: ");
+			System.out.print(
+					"Answer the following Security Question.\nWho is your best friend in your childhood?: ");
 			String securityAnswer = input.nextLine();
 			User temp = new User(username, email, securityAnswer);
-			if(customerHash.search(temp)>=0||managerHash.search(temp)>=0) {
+			if (customerHash.search(temp) >= 0 || managerHash.search(temp) >= 0) {
 				User u = customerHash.searchAndGet(temp);
-				if(u!=null) {
+				if (u != null) {
 					customerHash.remove(temp);
 					System.out.print("\nEnter New Password: ");
 					u.setpassword(input.nextLine());
 					customerHash.insert(u);
-					
-				}
-				else {
+
+				} else {
 					u = managerHash.searchAndGet(temp);
 					managerHash.remove(temp);
 					System.out.print("\nEnter New Password: ");
 					u.setpassword(input.nextLine());
 					managerHash.insert(u);
 				}
-				System.out.println("\nPassword already reset!");
+				System.out.println("\nPassword has been reset!");
 				System.out.println(u);
 				return u;
-			}else {
-				System.out.print("Could Not Find Your Account,Press Any Key Retry or Press \"x\" to Exit: ");
+			} else {
+				System.out.print("Fail to Find Your Account, Press Any Key Try it again or Press \"x\" to Exit: ");
 				choice = input.nextLine();
 			}
 		}
@@ -309,9 +306,9 @@ public class DealStation {
 	}
 
 	public int checkuser(User u) {
-		if (customerHash.compareSearch(u)>=0) {
+		if (customerHash.compareSearch(u) >= 0) {
 			return 1;
-		} else if (managerHash.compareSearch(u)>=0) {
+		} else if (managerHash.compareSearch(u) >= 0) {
 			return 2;
 		} else {
 			return -1;
@@ -323,7 +320,7 @@ public class DealStation {
 		String username = "";
 		String password = "";
 		String password2;
-		String email ="";
+		String email = "";
 		String securityAnswer = "";
 		if (i == 1) {
 			System.out.println("");
@@ -336,11 +333,10 @@ public class DealStation {
 		while (!pass) {
 			System.out.print("\nEnter your new username: ");
 			username = input.nextLine();
-			User tmp = new User(username,"");
-			if(customerHash.contain(tmp, username)) {
-				System.out.println("\n"+username+" has been used,Please change one or Login!");
-			}
-			else {
+			User tmp = new User(username, "");
+			if (customerHash.contain(tmp, username)) {
+				System.out.println("\n" + username + " has been used. Please change to another one or Login!");
+			} else {
 				System.out.print("Create your password: ");
 				password = input.nextLine();
 				System.out.print("Re-enter the password: ");
@@ -350,17 +346,18 @@ public class DealStation {
 				} else if (password.equals(password2)) {
 					pass = true;
 				} else {
-					System.out.println("\nThe two passwords are different, please try again\n");
+					System.out.println("\nThe two passwords are different, please try it again\n");
 				}
 				System.out.print("Enter your Email: ");
 				email = input.nextLine();
-				System.out.print("Answer following question as Security Answer.\nWho is your bestfriend in your childhood?: ");
+				System.out.print(
+						"Answer the following Security Question.\nWho is your best friend in your childhood?: ");
 				securityAnswer = input.nextLine();
 			}
-			
+
 		}
 
-		User u = new User(username, password,email,securityAnswer);
+		User u = new User(username, password, email, securityAnswer);
 		return u;
 
 	}
@@ -381,22 +378,22 @@ public class DealStation {
 		System.out.print("Enter the price: $");
 		double price = input.nextDouble();
 		input.nextLine();
-		System.out.print("Enter the color");
+		System.out.print("Enter the color: ");
 		String color = input.nextLine();
 		ArrayList<String> occ = new ArrayList<>();
 		while (pass) {
-			System.out.print("Add an occasion:");
+			System.out.print("Add an occasion: ");
 			String occOption = input.nextLine();
 			occ.add(occOption);
-			System.out.print("Want add more occasion?(Enter any key to add more or \"x\" for Exit ): ");
+			System.out.print("Want to add one more occasion?(Enter any key to keep adding or \"x\" for Exit ): ");
 			choice = input.nextLine();
 			if (choice.equalsIgnoreCase("x")) {
 				pass = false;
 			}
 		}
-		System.out.print("Enter the link");
+		System.out.print("Enter the link: ");
 		String link = input.nextLine();
-		System.out.print("Enter the number of the review");
+		System.out.print("Enter the stars of the review(out of 5): ");
 		double reviewNum = input.nextDouble();
 		input.nextLine();
 		String review = reviewNum + "/5 stars";
@@ -404,8 +401,8 @@ public class DealStation {
 		bstBrand.insert(add);
 		bstPrice.insert(add);
 		ht.insert(add);
-		System.out.println("\n" + brand + "\'s " + name + " was added!");
-		io.writeToLog(id + " had add " + brand + "\'s " + name);
+		System.out.println("\n" + brand + "\'s " + name + " has been added!");
+		io.writeToLog(id + " has added " + brand + "\'s " + name);
 
 	}
 
@@ -458,117 +455,119 @@ public class DealStation {
 				if (choice.equalsIgnoreCase("category")) {
 					System.out.print("Enter the new category: ");
 					category = input.nextLine();
-					System.out.print(
-							"Confirm change the category from " + c.getCategory() + " to " + category + ". (yes or no)");
+					System.out.print("Confirm change the category from " + c.getCategory() + " to " + category
+							+ ". (yes or no)");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the category from "
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the category from "
 								+ c.getCategory() + " to " + category);
 						c.setCategory(category);
 					}
 				} else if (choice.equalsIgnoreCase("brand")) {
-					System.out.print("Enter new brand: ");
+					System.out.print("Enter the new brand: ");
 					brand = input.nextLine();
-					System.out.print("Confirm change the brand from " + c.getBrand() + " to " + brand + ". (yes or no)");
+					System.out
+							.print("Confirm change the brand from " + c.getBrand() + " to " + brand + ". (yes or no)");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the brand from " + c.getBrand()
-								+ " to " + brand);
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the brand from "
+								+ c.getBrand() + " to " + brand);
 						c.setBrand(brand);
 					}
 				} else if (choice.equalsIgnoreCase("name")) {
-					System.out.print("Enter new name: ");
+					System.out.print("Enter the new name: ");
 					name = input.nextLine();
 					System.out.print("Confirm change the name from " + c.getName() + " to " + name + ". (yes or no)");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the name from " + c.getName()
-								+ " to " + name);
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the name from "
+								+ c.getName() + " to " + name);
 						c.setName(name);
 					}
 				} else if (choice.equalsIgnoreCase("price")) {
-					System.out.print("Enter new price: ");
+					System.out.print("Enter the new price: ");
 					price = input.nextDouble();
 					input.nextLine();
-					System.out.print("Confirm change the price from $" + c.getPrice() + " to $" + price + ". (yes or no)");
+					System.out.print(
+							"Confirm change the price from $" + c.getPrice() + " to $" + price + ". (yes or no)");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the price from $"
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the price from $"
 								+ c.getPrice() + " to $" + price);
 						c.setPrice(price);
 					}
 				} else if (choice.equalsIgnoreCase("color")) {
-					System.out.print("Enter new color: ");
+					System.out.print("Enter the new color: ");
 					color = input.nextLine();
-					System.out.print("Confirm change the color from " + c.getColor() + " to " + color + ". (yes or no)");
+					System.out
+							.print("Confirm change the color from " + c.getColor() + " to " + color + ". (yes or no)");
 					color = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the color from " + c.getColor()
-								+ " to " + color);
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the color from "
+								+ c.getColor() + " to " + color);
 						c.setColor(color);
 					}
 				} else if (choice.equalsIgnoreCase("link")) {
-					System.out.print("Enter new link: ");
+					System.out.print("Enter the new link: ");
 					link = input.nextLine();
 					System.out.print("Confirm change the link from " + c.getLink() + "\nto:" + link + ". (yes or no)");
 					link = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the link from " + c.getLink()
-								+ "\nto\n" + link);
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the link from "
+								+ c.getLink() + "\nto\n" + link);
 						c.setLink(link);
 					}
 				} else if (choice.equalsIgnoreCase("review")) {
-					System.out.print("Enter the new link: ");
+					System.out.print("Enter the new review: ");
 					review = input.nextLine();
-					System.out
-							.print("Confirm change the review from " + c.getReview() + "\nto\n" + review + ". (yes or no)");
+					System.out.print(
+							"Confirm change the review from " + c.getReview() + " to " + review + ". (yes or no): ");
 					review = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						io.writeToLog(id + " changed " + c.getBrand() + "'s " + c.getName() + " the review from "
+						io.writeToLog(id + " has changed " + c.getBrand() + "'s " + c.getName() + " the review from "
 								+ c.getReview() + "\nto\n" + review);
 						c.setReview(review);
 					}
 				} else if (choice.equalsIgnoreCase("occasion") || choice.equalsIgnoreCase("occ")) {
 					while (!choice.equalsIgnoreCase("x")) {
 						ArrayList<String> occ = c.getOccasion();
-						System.out.println("The current Occasion as following:");
+						System.out.println("The current Occasions are as follows: ");
 						for (int i = 0; i < occ.size(); i++) {
-							System.out.println((i + 1) +". "+ occ.get(i));
+							System.out.println((i + 1) + ". " + occ.get(i));
 						}
-						System.out.println("\nIf want add enter \"add\", delete enter \"del\" \n x for exit");
+						System.out.println("\nIf you want to add enter \"add\", delete enter \"del\", x to exit.");
 						System.out.print("Enter your choice: ");
 						choice = input.nextLine();
 						if (choice.equalsIgnoreCase("add")) {
 							System.out.print("Enter an occasion: ");
 							String occadd = input.nextLine();
-							System.out.print("Confirm add " + occadd + " to occasion. (yes or no)");
+							System.out.print("Confirm add " + occadd + " to occasions. (yes or no): ");
 							choice = input.nextLine();
 							if (choice.equalsIgnoreCase("yes")) {
 								c.addOccasion(occadd);
 								System.out.println("\n" + occadd + " has been added.");
-								io.writeToLog(id + " had added " + occadd + " to occasion");
+								io.writeToLog(id + " has added " + occadd + " to Occasion");
 							}
 
 						} else if (choice.equalsIgnoreCase("del")) {
-							System.out.print("Which occastion you want to delete(Enter digital 1 - "+occ.size()+"): ");
-							int index = input.nextInt()-1;
+							System.out.print(
+									"Which occasion do you want to delete(Enter digital 1 - " + occ.size() + "): ");
+							int index = input.nextInt() - 1;
 							input.nextLine();
-							System.out.print("Confirm delete " + c.getOccasion(index) + " from occasion. (yes or no)");
+							System.out.print("Confirm delete " + c.getOccasion(index) + " from occasion. (yes or no): ");
 							choice = input.nextLine();
 							if (choice.equalsIgnoreCase("yes")) {
 								System.out.println("\n" + c.getOccasion(index) + " has been deleted.");
 								io.writeToLog(id + " had deleted " + c.getOccasion(index) + " to occasion");
-								c.delOccasion(index);	
+								c.delOccasion(index);
 							}
-						}else if(choice.equalsIgnoreCase("x")){
-							
-						}
-						else {
+						} else if (choice.equalsIgnoreCase("x")) {
+
+						} else {
 							System.out.println("\nInvalid Selection!\n");
 						}
 					}
-				}
-				else if (choice.equalsIgnoreCase("x")) {
+				} else if (choice.equalsIgnoreCase("x")) {
 
 				}
 
@@ -638,16 +637,13 @@ public class DealStation {
 		output += "\nCongradulations! You got your personal Promotion Code:\n";
 		output += printInTable("||", "=", "$", "" + code[i], 60, 6);
 
-		System.out
-				.println("\nYou can use the code when you buying your love products on the official website and get "
-						+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
-		output +="\nYou can use the code when you buying your love products on the official website and get "
+		System.out.println("\nYou can use the code when you buying your love products on the official website and get "
+				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
+		output += "\nYou can use the code when you buying your love products on the official website and get "
 				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n";
 		return output;
 	}
 
-
-	
 	public String formatCenter(String s, int i) {
 		i = (i - s.length()) / 2;
 		String s1 = "";
@@ -676,12 +672,12 @@ public class DealStation {
 			}
 			if (i == r / 2 - 1) {
 				System.out.print(s1);
-				result+=s1;
+				result += s1;
 				System.out.println("\n" + s1 + "" + formatCenter(title, c) + "" + s1);
-				result += "\n" + s1 + "" + formatCenter(title, c) + "" + s1+"\n";
+				result += "\n" + s1 + "" + formatCenter(title, c) + "" + s1 + "\n";
 			} else {
 				System.out.print(s1 + "\n");
-				result +=s1 + "\n";
+				result += s1 + "\n";
 			}
 		}
 		return result;

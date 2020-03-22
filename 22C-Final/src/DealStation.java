@@ -40,15 +40,15 @@ public class DealStation {
 			String id = C.loginInterface(input);
 			if (id.contains("Manager")) {
 				C.managerInterface(id);
-				System.out.print("\nPress any key going back to login page or pass 1 to exit: ");
+				System.out.print("\nPress any key to return to the Login page or press 1 to exit: ");
 				choice = input.nextLine();
 			} else if (id.contains("User")||id.equals("Guest")) {
 				C.userInterface(id);
-				System.out.print("\nPress any key going back to login page or pass 1 to exit: ");
+				System.out.print("\nPress any key to return to the Login page or press 1 to exit: ");
 				choice = input.nextLine();
 			}
 		}
-		System.out.println("\nWelcome next time Good Bye!");
+		System.out.println("\nSee you next time and goodbye!");
 		C.wirteToFile();
 		input.close();
 
@@ -87,7 +87,7 @@ public class DealStation {
 			c = new Cosmetic(category, brand, name, price, color, link, occ, review);
 			ht.insert(c);
 			bst1.insert(c);
-			bst2.insertByPrice(c);
+			bst2.insert(c);
 		}
 	}
 
@@ -127,12 +127,15 @@ public class DealStation {
 	public void managerInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String chooice = "";
-		System.out.println("Cosmetics Deal Space Station Management system lgoin as "+ id);
+		System.out.println("***Cosmetics Deal Station Management System***\n"+
+"\nWelcome! "+ id);
 
 		while (!chooice.equals("6")) {
+			System.out.println("Please select from the menu: ");
 			System.out.println(
-					"\n1.Display product" + "\n2.Add product" + "\n3.delate product" + "\n4.Edit product" + "\n5.Add manager"+"\n6. Logout");
-			System.out.print("\nEnter you chooise:");
+					"1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product" + "\n4. Edit a product"
+					+ "\n5. Add a new manager" + "\n6. Logout");
+			System.out.print("\nEnter you choice: ");
 			chooice = input.nextLine();
 			if (chooice.equals("1")) {
 				displaying(input);
@@ -145,11 +148,11 @@ public class DealStation {
 			} else if(chooice.equals("5")) {
 				user u = registeredInterface(input, 2);
 				managerHash.insert(u);
-				System.out.println("Manager "+u.getUserName()+" has Added");
+				System.out.println("\nManager "+u.getUserName()+" has Added!");
 			}
 			
 			else if (chooice.equals("6")) {
-				System.out.println("Thank you for your work!");
+				System.out.println("\nThank you and see you next time!");
 			} else {
 				System.out.println("\nInvalid Selection!\n");
 			}
@@ -159,10 +162,11 @@ public class DealStation {
 	public void userInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String chooice = "";
-		System.out.println("\nWelcome "+id+" to Cosmetics Deal Space Station!\n");
+		System.out.println("\nHi "+id.substring(5)+"! Welcome to Cosmetics Deal Station!\n");
 		while (!chooice.equals("4")) {
-			System.out.println("\n1.Display product" + "\n2.Search" + "\n3.Get PromoCode" +"\n4.Logout");
-			System.out.print("\nEnter you chooise:");
+			System.out.println("\nPlease select from the menu: ");
+			System.out.println("1. Review products" + "\n2. Search a product" + "\n3. Get PromotionCode" +"\n4. Logout");
+			System.out.print("\nEnter you choice:");
 			chooice = input.nextLine();
 			if (chooice.equals("1")) {
 				displaying(input);
@@ -173,25 +177,26 @@ public class DealStation {
 			} else if (chooice.equals("4")) {
 				System.out.println("\nThank you for using our program!\n");
 			} else {
-				System.out.println("\nWrong input! Only digit 1, 2, 3or 4 to exit\n");
+				System.out.println("\nWrong input! Only digit 1, 2, 3 or 4 to exit.");
 			}
 		}
 
 	}
 
 	public void searchInterface(Scanner input) {
-		String chooice = "";
-		System.out.println("\nWelcome to Cosmetics Search");
+		String choice = "";
+		System.out.println("\nStart to search for a Cosmetic!");
 
-		while (!chooice.equals("3")) {
-			System.out.println("\n1.Search by brand and name\n2.Smart Search\n3.Exit");
-			System.out.print("\nEnter you chooise:");
-			chooice = input.nextLine();
-			if (chooice.equals("1")) {
+		while (!choice.equals("3")) {
+			System.out.println("\nPlease select from the menu: ");
+			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Exit");
+			System.out.print("\nEnter you choice: ");
+			choice = input.nextLine();
+			if (choice.equals("1")) {
 				searching(input);
-			} else if (chooice.equals("2")) {
+			} else if (choice.equals("2")) {
 				userSmartSearchInterface(input);
-			} else if (chooice.equals("3")) {
+			} else if (choice.equals("3")) {
 				
 			} else {
 				System.out.println("\nWrong input! Only digit 1, 2 or 3 to exit\n");
@@ -200,30 +205,31 @@ public class DealStation {
 	}
 
 	public void userSmartSearchInterface(Scanner input) {
-		String chooice = "";
-		while (!chooice.equalsIgnoreCase("x")) {
-			System.out.println("Welcome to our Smart Search Program\n" + "What are you looking for?\r\n"
-					+ "You can enter category + brand or category + occasion\n"
-					+ "It support multiple keywords search and match\n" + "keyword split by a \",\"\n" + "X for Exit");
-			System.out.print("\nEnter you chooise:");
-			chooice = input.nextLine();
-			if(!chooice.equalsIgnoreCase("x")) {
-				String[] chooiceArray = chooice.split(",");
+		String choice = "";
+		while (!choice.equalsIgnoreCase("x")) {
+			System.out.println("\nWelcome to our Smart Search Program!\n"
+					+ "Multiple keywords search. You can enter: \n\n*category + brand(split by a comma\",\")\n*category + occasion(split by a comma\",\")\n"
+					+ "*X to Exit");
+			System.out.print("\nEnter you choice: ");
+			choice = input.nextLine();
+			if (!choice.equalsIgnoreCase("x")) {
+				String[] chooiceArray = choice.split(",");
 				BST<Cosmetic> ss = bst1;
 				for (int i = 0; i < chooiceArray.length; i++) {
 					ss = ss.Contain(chooiceArray[i]);
 				}
-				if (ss.isEmpty()) {
-					System.out.println("\nSorry, The product you want is not in our database\n");
+				if (ss.isEmpty()||ss==null) {
+					System.out.println("\nSorry, the product you want is not in our database.\n");
 				}
 				ss.inOrderPrint();
 
-				System.out.print("\nDo you want another search? or x for exit: ");
-				chooice = input.nextLine();
+				System.out.print("\nPress any key to keep searching or X to exit: ");
+				choice = input.nextLine();
 			}
-			
+
 		}
 	}
+
 
 	public String loginInterface(Scanner input) {
 		int pass = -1;

@@ -112,7 +112,7 @@ public class FileIO {
 
 	}
 	
-	public String writeWishListToFile(BST<Cosmetic> wishList, String id) {
+	public String writeWishListToFile(BST<Cosmetic> wishList, String id, String promCode) {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String time = dateFormat.format(calendar.getTime());
@@ -120,6 +120,7 @@ public class FileIO {
 		File file = new File(fileName);
 		try {
 			PrintWriter p = new PrintWriter(file);
+			p.println(promCode);
 			wishList.writeToFile(p);
 			p.close();
 		} catch (IOException e) {

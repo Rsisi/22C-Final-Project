@@ -130,12 +130,24 @@ public class DealStation {
 				System.out.println("Hi " + id + ", Here is your current WishList");
 				wishList.inOrderPrint();
 			} else if (choice.equals("5")) {
-				String fileName = io.writeWishListToFile(wishList, id);
-				System.out.println("\nYour WishList has already output to file " + fileName + " !");
+				if(wishList.isEmpty()) {
+					System.out.println("Sorry, Wish List is empty! You did not add any cosmetic in wish list.");
+				}
+				else {
+					String fileName = io.writeWishListToFile(wishList, id,"");
+					System.out.println("\nYour WishList has already output to file " + fileName + " !");
+				}
+				
+				
 			} else if (choice.equals("6")) {
 				System.out.println("\nThank you for your visit!");
-				String fileName = io.writeWishListToFile(wishList, id);
-				System.out.println("\nYour WishList has already output to file " + fileName + " !");
+				if(wishList.isEmpty()) {
+					System.out.println("Your Wish List is empty! Wish you next time find the product you want!");
+				}
+				else {
+					String fileName = io.writeWishListToFile(wishList, id,getPromoCode());
+					System.out.println("\nYour WishList has already output to file " + fileName + " !");
+				}
 			} else {
 				System.out.println("\nWrong input! Only digit 1, 2, 3 or 4 to exit\n");
 			}
@@ -179,7 +191,6 @@ public class DealStation {
 			choice = input.nextLine();
 			if (!choice.equalsIgnoreCase("x")) {
 				String[] choiceArray = choice.split(",");
-				System.out.println(choiceArray[0] + " " + choiceArray[1]);
 				BST<Cosmetic> ss = bstBrand;
 				for (int i = 0; i < choiceArray.length; i++) {
 					ss = ss.Contain(choiceArray[i]);
@@ -618,17 +629,21 @@ public class DealStation {
 		}
 	}
 
-	public void getPromoCode() {
+	public String getPromoCode() {
+		String output = "";
 		String[] code = { "BEAUTY25", "SPRING20", "LUCKY15", "AWESOME10" };
 		Random r = new Random();
 		int i = r.nextInt(code.length);
 		System.out.println("\nCongradulations! You got your personal Promotion Code:\n");
-		printInTable("||", "=", "$", "" + code[i], 60, 6);
+		output += "\nCongradulations! You got your personal Promotion Code:\n";
+		output += printInTable("||", "=", "$", "" + code[i], 60, 6);
 
 		System.out
 				.println("\nYou can use the code when you buying your love products on the official website and get "
 						+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
-
+		output +="\nYou can use the code when you buying your love products on the official website and get "
+				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n";
+		return output;
 	}
 
 
@@ -646,7 +661,8 @@ public class DealStation {
 		}
 	}
 
-	public void printInTable(String s1, String s2, String s3, String title, int c, int r) {
+	public String printInTable(String s1, String s2, String s3, String title, int c, int r) {
+		String result = "";
 		for (int i = 0; i < r; i++) {
 			System.out.print(s1);
 			for (int j = 0; j < c; j++) {
@@ -660,10 +676,14 @@ public class DealStation {
 			}
 			if (i == r / 2 - 1) {
 				System.out.print(s1);
+				result+=s1;
 				System.out.println("\n" + s1 + "" + formatCenter(title, c) + "" + s1);
+				result += "\n" + s1 + "" + formatCenter(title, c) + "" + s1+"\n";
 			} else {
 				System.out.print(s1 + "\n");
+				result +=s1 + "\n";
 			}
 		}
+		return result;
 	}
 }

@@ -127,11 +127,11 @@ public class DealStation {
 	public void managerInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String chooice = "";
-		System.out.println("***Cosmetics Deal Station Management System***\n"+
+		System.out.println("\n*** Deal Station Management System ***\n"+
 "\nWelcome! "+ id);
 
 		while (!chooice.equals("6")) {
-			System.out.println("Please select from the menu: ");
+			System.out.println("\nPlease select from the menu: ");
 			System.out.println(
 					"1. Review current products" + "\n2. Add a new product" + "\n3. Delete a product" + "\n4. Edit a product"
 					+ "\n5. Add a new manager" + "\n6. Logout");
@@ -235,55 +235,52 @@ public class DealStation {
 
 	public String loginInterface(Scanner input) {
 		int pass = -1;
-		String chooice = "";
-		while (!chooice.equals("1")&&!chooice.equals("2")&&!chooice.equals("3")) {
-			System.out.println("\nWelcome to Cosmetics Deal Space Station!\n");
-			System.out.println("\n1.Login\n2.Registered\n3.Continue as the guest");
-			System.out.print("\nEnter your chooice: ");
-			chooice = input.nextLine();
-			if(chooice.equals("1")) {
-				while(pass<0) {
-					System.out.println("\nlogin");
-					System.out.print("\nPls enter your user name:");
+		String choice = "";
+		while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
+			System.out.println("\n***Welcome to Cosmetics Deal Station!***\n");
+			System.out.println("\n1. Login\n2. Register\n3. Continue as a guest");
+			System.out.print("\nEnter your choice: ");
+			choice = input.nextLine();
+			if (choice.equals("1")) {
+				while (pass < 0) {
+					System.out.println("\nLogin...");
+					System.out.print("\nEnter the Member account(or Manager account): ");
 					String username = input.nextLine();
-					System.out.print("Pls enter your password:");
+					System.out.print("Enter the Password: ");
 					String passwd = input.nextLine();
 					user u = new user(username, passwd);
 					pass = checkuser(u);
-					if(pass == 1) {
-						return "User "+u.getUserName();
-					}
-					else if(pass == 2) {
-						return "Manager "+u.getUserName();
-					}
-					else {
-						System.out.print("Username or Password is not correct,Please enter any key to try again or enter \"r\" to regitered: ");
+					if (pass == 1) {
+						return "User " + u.getUserName();
+					} else if (pass == 2) {
+						return "Manager " + u.getUserName();
+					} else {
+						System.out.print(
+								"\nAccount or Password is incorrect! \nPlease enter any key to try it again or enter \"r\" to regiter a new account: ");
 						String tryagain = input.nextLine();
-						if(tryagain.equalsIgnoreCase("r")) {
+						if (tryagain.equalsIgnoreCase("r")) {
 							user u1 = registeredInterface(input, 1);
 							userHash.insert(u1);
 							pass = 1;
-							return "User "+u1.getUserName();
+							return "User " + u1.getUserName();
 						}
 					}
 				}
-				
-			}
-			else if(chooice.equals("2")) {
+
+			} else if (choice.equals("2")) {
 				user u = registeredInterface(input, 1);
 				userHash.insert(u);
-				return "User "+u.getUserName();
-			}
-			else if(chooice.equals("3")) {
+				return "User " + u.getUserName();
+			} else if (choice.equals("3")) {
 				return "Guest";
-			}
-			else {
+			} else {
 				System.out.println("Wrong input! Only digit 1, 2 or 3");
 			}
-			
+
 		}
 		return "";
 	}
+
 	
 	public int checkuser(user u) {
 		if (userHash.check(u)) {

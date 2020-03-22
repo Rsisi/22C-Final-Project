@@ -125,7 +125,8 @@ public class DealStation {
 	public void managerInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String choice = "";
-		System.out.println("\n*** Deal Station Management System*** \n" + "\nWelcome! " + id);
+		System.out.println("");
+		printInTable("-", "-", " ", "Deal Station™ Management System", 60, 4);
 
 		while (!choice.equals("6")) {
 			System.out.println("\nPlease select from the menu: ");
@@ -158,9 +159,11 @@ public class DealStation {
 	public void userInterface(String id) {
 		Scanner input = new Scanner(System.in);
 		String choice = "";
-		System.out.println("\nHi " + id.substring(5) + "! Welcome to Cosmetics Deal Station!\n");
+		System.out.println("");
+		printInTable("♡", "♡", " ", "Hi " + id.substring(5) + "! Welcome Back!", 60, 4);
+
 		while (!choice.equals("4")) {
-			System.out.println("Please select from the menu: ");
+			System.out.println("\nPlease select from the menu: ");
 			System.out.println(
 					"1. Review products" + "\n2. Search a product" + "\n3. Get the Promotion Code" + "\n4. Logout");
 			System.out.print("\nEnter you choice: ");
@@ -204,9 +207,12 @@ public class DealStation {
 	public void userSmartSearchInterface(Scanner input) {
 		String choice = "";
 		while (!choice.equalsIgnoreCase("x")) {
-			System.out.println("\nWelcome to our Smart Search Program!\n"
-					+ "\nMultiple keywords search. You can enter: \n*category + brand(split by a comma\",\")\n*category + occasion(split by a comma\",\")\n"
-					+ "*X to Exit");
+			System.out.println("");
+			printInTable("┇", "☞", " ", "Welcome to our Smart Search Program!", 60, 6);
+
+			System.out.println(
+					"\nMultiple keywords search. You can enter: \n*category + brand(split by a comma\",\")\n*category + occasion(split by a comma\",\")\n"
+							+ "*X to Exit");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (!choice.equalsIgnoreCase("x")) {
@@ -228,35 +234,46 @@ public class DealStation {
 		}
 	}
 
-	public String center(String s, int i) {
+	public String formatCenter(String s, int i) {
 		i = (i - s.length()) / 2;
 		String s1 = "";
 		for (int j = 0; j < i; j++) {
 			s1 += " ";
 		}
-		return s1 + s + s1;
+		if (s.length() % 2 == 0) {
+			return s1 + s + s1;
+		} else {
+			return s1 + s + s1 + " ";
+		}
+	}
+
+	public void printInTable(String s1, String s2, String s3, String title, int c, int r) {
+		for (int i = 0; i < r; i++) {
+			System.out.print(s1);
+			for (int j = 0; j < c; j++) {
+				if (i == 0 || i == r - 1) {
+					System.out.print(s2);
+				} else if (i > 1 && i < r - 2) {
+					System.out.print(" ");
+				} else {
+					System.out.print(s3);
+				}
+			}
+			if (i == r / 2 - 1) {
+				System.out.print(s1);
+				System.out.println("\n" + s1 + "" + formatCenter(title, c) + "" + s1);
+			} else {
+				System.out.print(s1 + "\n");
+			}
+		}
 	}
 
 	public String loginInterface(Scanner input) {
 		int pass = -1;
 		String choice = "";
 		while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
-			for (int i = 0; i < 6; i++) {
-				System.out.print("❤");
-				for (int j = 0; j < 60; j++) {
-					if (i > 0 && i < 5) {
-						System.out.print(" ");
-					} else {
-						System.out.print("☆");
-					}
-				}
-				if (i == 2) {
-					System.out.print("❤");
-					System.out.println("\n❤" + center("Welcome to Cosmetics Deal Station!", 60) + "❤");
-				} else {
-					System.out.print("❤\n");
-				}
-			}
+			printInTable("❤", "❤", "◊", "Welcome to Cosmetics Deal Station™!", 60, 6);
+
 			System.out.println("\n1. Login\n2. Register\n3. Continue as a guest");
 			System.out.print("\nEnter your choice: ");
 			choice = input.nextLine();
@@ -316,9 +333,13 @@ public class DealStation {
 		String password = "";
 		String password2;
 		if (i == 1) {
-			System.out.println("\nWelcome to Deal Station!");
+			System.out.println("");
+			printInTable("▫", "-", " ", "Register to be a Deal Station™ Member! ", 60, 4);
+
 		} else {
-			System.out.println("\nWelcome to Deal Station! Now you can add a manager account!");
+			System.out.println("");
+			printInTable("||", "=", " ", "Add a Deal Station™ manager account!", 60, 2);
+
 		}
 
 		while (!pass) {
@@ -345,8 +366,10 @@ public class DealStation {
 	public void adding(Scanner input) {
 		String link = "";
 		String review = "";
-		System.out.println("\nAdding a cosmetic!\n");
-		System.out.print("Enter the category: ");
+		System.out.println("");
+		printInTable("|", "+", " ", "Add a cosmetic!", 60, 2);
+
+		System.out.print("\nEnter the category: ");
 		String category = input.nextLine();
 		System.out.print("Enter the brand: ");
 		String brand = input.nextLine();
@@ -390,8 +413,9 @@ public class DealStation {
 		String brand = "";
 		String name = "";
 
-		System.out.println("\nRemoving a Cosmetic!\n");
-		System.out.print("Enter the brand: ");
+		System.out.println("");
+		printInTable("|", "+", " ", "Remove a Cosmetic!", 60, 2);
+		System.out.print("\nEnter the brand: ");
 		brand = input.nextLine();
 		System.out.print("Enter the name: ");
 		name = input.nextLine();
@@ -416,8 +440,9 @@ public class DealStation {
 		String link = "";
 		String review = "";
 		String choice = "";
+		System.out.println("");
+		printInTable("|", "+", " ", "Edit a Cosmetic from the current database", 60, 2);
 
-		System.out.println("\nEdit a Cosmetic from the current database: \n");
 		System.out.print("Enter the brand to edit: ");
 		brand = input.nextLine();
 		System.out.print("Enter the name to edit: ");
@@ -513,7 +538,8 @@ public class DealStation {
 		String brand = "";
 		String name = "";
 
-		System.out.println("\nSearching for a Cosmetic!\n");
+		System.out.println("");
+		printInTable("|", "+", " ", "Delete a Cosmetic from the database!", 60, 2);
 		System.out.print("Enter the brand: ");
 		brand = input.nextLine();
 		System.out.print("Enter the name: ");
@@ -534,8 +560,8 @@ public class DealStation {
 	public void searching(Scanner input) {
 		String brand = "";
 		String name = "";
-
-		System.out.println("\nSearching for a Cosmetic by brand and name!\n");
+		System.out.println("");
+		printInTable("|", "+", " ", "Search for a Cosmetic by brand and name!", 60, 2);
 		System.out.print("Enter the brand: ");
 		brand = input.nextLine();
 		System.out.print("Enter the name: ");
@@ -554,9 +580,12 @@ public class DealStation {
 		String[] code = { "BEAUTY25", "SPRING20", "LUCKY15", "AWESOME10" };
 		Random r = new Random();
 		int i = r.nextInt(code.length);
-		System.out.println("\nCongradulations! You got your personal Promotion Code:\n\n" + code[i]
-				+ "\n\nYou can use the code when you buying your love products on the official website and get "
-				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
+		System.out.println("\nCongradulations! You got your personal Promotion Code:\n");
+		printInTable("||", "=", "$", "" + code[i], 60, 6);
+
+		System.out
+				.println("\nYou can use the code when you buying your love products on the official website and get "
+						+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
 
 	}
 

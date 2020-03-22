@@ -160,9 +160,9 @@ public class DealStation {
 		String choice = "";
 		System.out.println("\nHi " + id.substring(5) + "! Welcome to Cosmetics Deal Station!\n");
 		while (!choice.equals("4")) {
-			System.out.println("\nPlease select from the menu: ");
+			System.out.println("Please select from the menu: ");
 			System.out
-					.println("1. Review products" + "\n2. Search a product" + "\n3. Get PromotionCode" + "\n4. Logout");
+					.println("1. Review products" + "\n2. Search a product" + "\n3. Get the Promotion Code" + "\n4. Logout");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (choice.equals("1")) {
@@ -172,7 +172,7 @@ public class DealStation {
 			} else if (choice.equals("3")) {
 				getPromoCode();
 			} else if (choice.equals("4")) {
-				System.out.println("\nThank you for using our program!\n");
+				System.out.println("\nThank you for your visit!");
 			} else {
 				System.out.println("\nWrong input! Only digit 1, 2, 3 or 4 to exit.");
 			}
@@ -222,7 +222,7 @@ public class DealStation {
 				}
 			}
 
-			System.out.print("\nPress any key to keep searching or X to exit: ");
+			System.out.print("Press any key to keep searching or X to exit: ");
 			choice = input.nextLine();
 
 		}
@@ -528,9 +528,9 @@ public class DealStation {
 		String[] code = { "BEAUTY25", "SPRING20", "LUCKY15", "AWESOME10" };
 		Random r = new Random();
 		int i = r.nextInt(code.length);
-		System.out.println("Congradulations! You got your personal Promotion Code:\n" + code[i]
-				+ "\nYou can use the code when you buying your love products on the official website and get "
-				+ code[i].substring(code[i].length() - 2) + "percent off! Enjoy!");
+		System.out.println("\nCongradulations! You got your personal Promotion Code:\n\n" + code[i]
+				+ "\n\nYou can use the code when you buying your love products on the official website and get "
+				+ code[i].substring(code[i].length() - 2) + "% off! Enjoy!\n");
 
 	}
 

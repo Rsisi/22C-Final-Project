@@ -218,10 +218,12 @@ public class DealStation {
 				for (int i = 0; i < chooiceArray.length; i++) {
 					ss = ss.Contain(chooiceArray[i]);
 				}
-				if (ss.isEmpty()||ss==null) {
+				if (ss==null||ss.isEmpty()) {
 					System.out.println("\nSorry, the product you want is not in our database.\n");
+				}else{
+					ss.inOrderPrint();
 				}
-				ss.inOrderPrint();
+				
 
 				System.out.print("\nPress any key to keep searching or X to exit: ");
 				choice = input.nextLine();

@@ -1,12 +1,20 @@
+zxy3306
+445566
+zxy3306@163.com
+kenvin
+
 user1
-123456
+111111
+user1@gmail.com
+kenvin
 
 user2
 123456
+user2@gmail.com
+kenvin
 
 user3
 123456
-
-zxy3306
-445566
+user3@gmail.com
+kenvin
 

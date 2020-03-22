@@ -1,9 +1,20 @@
 manager1
 123456
+manager1@gmail.com
+kenvin
 
 manager2
 123456
+manager2@gmail.com
+kenvin
 
 manager3
 123456
+manager3@gmail.com
+kenvin
+
+managerzxy
+123456
+managerzxy@gmail.com
+kenvin
 

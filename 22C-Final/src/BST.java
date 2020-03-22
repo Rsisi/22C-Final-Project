@@ -286,7 +286,7 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 
 	/*** MUTATORS ***/
 
-	public void serRoot(Node root) {
+	public void setRoot(Node root) {
 		this.root = root;
 	}
 

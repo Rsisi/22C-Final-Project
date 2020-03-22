@@ -138,7 +138,7 @@ public class DealStation {
 			} else if (choice.equals("2")) {
 				adding(input);
 			} else if (choice.equals("3")) {
-				delate(input);
+				delete(input);
 			} else if (choice.equals("4")) {
 				editing(input);
 			} else if (choice.equals("5")) {
@@ -347,7 +347,7 @@ public class DealStation {
 				+ "P. Sorted by price\n" + "U. Unsorted\n");
 		System.out.print("\nEnter your choice: ");
 		String choice = input.nextLine();
-		System.out.println("\nDisplaying Cosmetics list:");
+		System.out.println("\nDisplaying the Cosmetics list:");
 		if (choice.equalsIgnoreCase("S")) {
 			bst1.inOrderPrint();
 			System.out.println();
@@ -383,6 +383,7 @@ public class DealStation {
 		}
 	}
 
+	
 	public void editing(Scanner input) {
 		String category = "";
 		String brand = "";
@@ -393,10 +394,10 @@ public class DealStation {
 		String review = "";
 		String choice = "";
 
-		System.out.println("\nEditing for a Cosmetic!\n");
-		System.out.print("Enter the brand: ");
+		System.out.println("\nEdit a Cosmetic from the current database: \n");
+		System.out.print("Enter the brand to edit: ");
 		brand = input.nextLine();
-		System.out.print("Enter the name: ");
+		System.out.print("Enter the name to edit: ");
 		name = input.nextLine();
 		Cosmetic edit = new Cosmetic(brand, name);
 		Cosmetic c = ht.searchAndGet(edit);
@@ -407,69 +408,69 @@ public class DealStation {
 			System.out.println(c);
 
 			while (!choice.equalsIgnoreCase("x")) {
-				System.out.print("Which part want edit(Example:name;x to Exit):");
+				System.out.print("Which part do you want to edit(e.g. name; enter x to Exit): ");
 				choice = input.nextLine();
 				if (choice.equalsIgnoreCase("category")) {
-					System.out.print("Enter new category:");
+					System.out.print("Enter the new category: ");
 					category = input.nextLine();
 					System.out.print(
-							"Confirm change category from " + c.getCategory() + " to " + category + ". (yes or no)");
+							"Confirm change the category from " + c.getCategory() + " to " + category + ". (yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setCategory(category);
 					}
 				} else if (choice.equalsIgnoreCase("brand")) {
-					System.out.print("Enter new brand:");
+					System.out.print("Enter the new brand: ");
 					brand = input.nextLine();
-					System.out.print("Confirm change brand from " + c.getBrand() + " to " + brand + ". (yes or no)");
+					System.out.print("Confirm change the brand from " + c.getBrand() + " to " + brand + ". (yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setBrand(brand);
 					}
 				} else if (choice.equalsIgnoreCase("name")) {
-					System.out.print("Enter new name:");
+					System.out.print("Enter the new name: ");
 					name = input.nextLine();
-					System.out.print("Confirm change name from " + c.getName() + " to " + name + ". (yes or no)");
+					System.out.print("Confirm change the name from " + c.getName() + " to " + name + ". (yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setName(name);
 					}
 				} else if (choice.equalsIgnoreCase("price")) {
-					System.out.print("Enter new price:");
+					System.out.print("Enter the new price: ");
 					price = input.nextDouble();
 					input.nextLine();
-					System.out.print("Confirm change price from " + c.getPrice() + " to " + price + ". (yes or no)");
+					System.out.print("Confirm change the price from " + c.getPrice() + " to " + price + ". (yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setPrice(price);
 					}
 				} else if (choice.equalsIgnoreCase("color")) {
-					System.out.print("Enter new color:");
+					System.out.print("Enter the new color: ");
 					color = input.nextLine();
-					System.out.print("Confirm change color from " + c.getColor() + " to " + color + ". (yes or no)");
+					System.out.print("Confirm change the color from " + c.getColor() + " to " + color + ". (yes or no): ");
 					color = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setColor(color);
 					}
 				} else if (choice.equalsIgnoreCase("link")) {
-					System.out.print("Enter new link:");
+					System.out.print("Enter the new link: ");
 					link = input.nextLine();
-					System.out.print("Confirm change link from " + c.getLink() + "\nto\n" + link + ". (yes or no)");
+					System.out.print("Confirm change the link from \n" + c.getLink() + "\nto: " + link + ". (yes or no): ");
 					link = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setLink(link);
 					}
 				} else if (choice.equalsIgnoreCase("review")) {
-					System.out.print("Enter new link:");
+					System.out.print("Enter the new link: ");
 					review = input.nextLine();
 					System.out
-							.print("Confirm change review from " + c.getReview() + "\nto\n" + review + ". (yes or no)");
+							.print("Confirm change the review from " + c.getReview() + "\nto\n" + review + ". (yes or no): ");
 					review = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
 						c.setReview(review);
 					}
 				} else {
-					System.out.println("Enter Error Pls enter again or x to exit");
+					System.out.println("\nError! Please enter again.");
 				}
 			}
 			bst1.insert(c);
@@ -481,7 +482,8 @@ public class DealStation {
 
 	}
 
-	public void delate(Scanner input) {
+
+	public void delete(Scanner input) {
 		String brand = "";
 		String name = "";
 

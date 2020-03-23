@@ -182,8 +182,8 @@ public class DealStation {
 		double price = -1;
 		while (!choice.equalsIgnoreCase("x")&&price!=0) {
 			System.out.println("");
-			printInTable("┇", "☞", " ", "Welcome to our Search Less Program!", 60, 6);
-			System.out.print("Search the price range you want!(press \"0\" to Exit)\nLess than: $");
+			printInTable("┇", "☞", " ", "Welcome to our Search Price Program!", 60, 6);
+			System.out.print("Search the price of products(press \"0\" to Exit)\nLess than: $");
 			price = input.nextDouble();
 			input.nextLine();
 			Cosmetic c = new Cosmetic(price);
@@ -376,12 +376,14 @@ public class DealStation {
 					pass = true;
 				} else {
 					System.out.println("\nThe two passwords are different, please try it again\n");
+				}if(pass) {
+					System.out.print("Enter your Email: ");
+					email = input.nextLine();
+					System.out
+							.print("Answer the following Security Question.\nWho is your best friend in your childhood?: ");
+					securityAnswer = input.nextLine();
 				}
-				System.out.print("Enter your Email: ");
-				email = input.nextLine();
-				System.out
-						.print("Answer the following Security Question.\nWho is your best friend in your childhood?: ");
-				securityAnswer = input.nextLine();
+				
 			}
 
 		}

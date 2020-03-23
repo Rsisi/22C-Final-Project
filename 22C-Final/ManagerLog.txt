@@ -1,24 +1,4 @@
-manager1 has added a's a at 2020-03-22:06:52:20
-manager1 has removed a's a at 2020-03-22:06:52:31
-manager1 has added a's a at 2020-03-22:07:09:18
-manager1 has removed a's a at 2020-03-22:07:09:33
-manager1 has removed Benefit Cosmetics's They’re Real! Lengthening & Volumizing Mascara at 2020-03-22:07:29:03
-manager1 has removed Armani Beauty's Lip Maestro Liquid Lipstick at 2020-03-22:07:58:52
-manager1 has added aa's abcd at 2020-03-22:08:08:00
-manager1 has removed aa's abcd at 2020-03-22:08:08:42
-manager1 has added armani's aaa at 2020-03-22:08:25:04
-manager1 has added a's a at 2020-03-22:08:35:23
-manager1 has added a's a at 2020-03-22:08:40:24
-manager1 has added a's a at 2020-03-22:08:43:16
-manager1 has added a's a at 2020-03-22:08:44:29
-manager1 has removed Armani Beauty's Lip Maestro Liquid Lipstick at 2020-03-22:08:45:37
-manager1 has added a's a at 2020-03-22:08:58:26
-manager1 has removed Armani Beauty's Lip Maestro Liquid Lipstick at 2020-03-22:08:59:27
-manager1 has changed a's a the brand from a to b at 2020-03-22:09:00:42
-manager1 has added a's a at 2020-03-22:09:11:57
-manager1 has removed Armani Beauty's Lip Maestro Liquid Lipstick at 2020-03-22:09:13:07
-manager1 has changed a's a the price from $100.0 to $50.0 at 2020-03-22:09:14:09
-manager1 has added a's a at 2020-03-22:09:27:29
-manager1 has removed Armani Beauty's Lip Maestro Liquid Lipstick at 2020-03-22:09:28:23
-manager1 has changed a's a the price from $100.0 to $200.0 at 2020-03-22:09:29:16
-manager1 has removed Marc Jacobs's Highliner Gel Eye Crayon Eye Liner at 2020-03-22:10:56:30
+
+manager1 has added a's a at 2020-03-22:11:36:36
+manager1 has removed Tom Ford's Eye Color Quad Eyeshadow Palette - Golden Mink at 2020-03-22:11:37:44
+manager1 has changed a's a the price from $100.0 to $200.0 at 2020-03-22:11:38:35

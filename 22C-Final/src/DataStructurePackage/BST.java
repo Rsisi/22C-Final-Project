@@ -243,6 +243,29 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		}
 	}
 	
+	public T searchAndGet(T data) {
+		if (root == null) {
+			return null;
+		} else {
+			return searchAndGet(data, root);
+		}
+	}
+	
+	private T searchAndGet(T data ,Node node) {
+		if (data.equals(node.data)) {
+			return node.data;
+		} else if (data.compareTo(node.data) < 0) {
+			if (node.left == null) {
+				return null;
+			}
+			return searchAndGet(data, node.left);
+		} else {
+			if (node.right == null) {
+				return null;
+			}
+			return searchAndGet(data, node.right);
+		}
+	}
 	
 
 	/**

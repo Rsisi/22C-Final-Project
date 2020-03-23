@@ -158,7 +158,7 @@ public class DealStation {
 
 		while (!choice.equals("4")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Search Less\n4. Exit");
+			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Search By Price\n4. Exit");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (choice.equals("1")) {
@@ -629,6 +629,7 @@ public class DealStation {
 			System.out.println("\n" + brand + "\'s " + name + " is not in the database.");
 
 		} else {
+			search = bstBrand.searchAndGet(search);
 			bstBrand.remove(search);
 			bstPrice.remove(search);
 			ht.remove(search);
@@ -681,7 +682,7 @@ public class DealStation {
 			s1 += " ";
 		}
 		if (s.length() % 2 == 0) {
-			return s1 + s + s1;6
+			return s1 + s + s1;
 		} else {
 			return s1 + s + s1 + " ";
 		}

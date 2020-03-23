@@ -23,19 +23,6 @@ daily
 4.1/5 stars
 https://www.sephora.com/product/they-re-real-lengthening-volumizing-mascara-P289307?icid2=products%20grid:p289307
 
-Lip
-Charlotte Tilbury
-Matte Revolution Lipstick
-34.00
-Pink
-4
-daily
-party
-business
-casual
-4.5/5 stars
-https://www.sephora.com/product/le-rouge-deep-velvet-lipstick-P448881?icid2=products%20grid:p448881
-
 Face
 Charlotte Tilbury
 Cheek to Chic Blush
@@ -59,7 +46,7 @@ date
 https://www.sephora.com/product/charlotte-tilbury-eyeliner-pillow-talk-collection-P454505?icid2=products%20grid:p454505
 
 Eye
-Charlotte Tilbury 
+Charlotte Tilbury
 Luxury Eyeshadow Palette
 53.00
 Pink
@@ -69,6 +56,19 @@ business
 date
 3.5/5 stars
 https://www.sephora.com/product/charlotte-tilbury-luxury-eyeshadow-palette-pillow-talk-collection-P455321?icid2=products%20grid:p455321
+
+Lip
+Charlotte Tilbury
+Matte Revolution Lipstick
+34.00
+Pink
+4
+daily
+party
+business
+casual
+4.5/5 stars
+https://www.sephora.com/product/le-rouge-deep-velvet-lipstick-P448881?icid2=products%20grid:p448881
 
 Lashes
 Dior
@@ -95,7 +95,7 @@ casual
 https://www.sephora.com/product/fenty-beauty-rihanna-flypencil-longwear-pencil-eyeliner-P455193?icid2=products%20grid:p455193
 
 Lashes
-Fenty Beauty 
+Fenty Beauty
 Full Frontal Volume, Lift & Curl
 24.00
 Pink
@@ -107,7 +107,7 @@ daily
 https://www.sephora.com/product/fenty-beauty-rihanna-full-frontal-volume-lift-curl-mascara-P45432919?icid2=products%20grid:p45432919
 
 Eye
-Fenty Beauty 
+Fenty Beauty
 Snap Shadows Mix & Match Eyeshadow Palette - True Neutrals
 25.00
 Nude
@@ -155,7 +155,7 @@ https://www.sephora.com/product/obsessions-eyeshadow-palette-P425909?icid2=produ
 
 Lashes
 ILIA
-Limitless Lash 
+Limitless Lash
 28.00
 Brown
 3
@@ -166,7 +166,7 @@ date
 https://www.sephora.com/product/limitless-lash-mascara-P431750?icid2=products%20grid:p431750
 
 Eyeliner
-KVD 
+KVD
 Tattoo Eye Liner
 21.00
 Brown
@@ -202,7 +202,7 @@ https://www.sephora.com/product/blush-colour-infusion-P433131?icid2=products%20g
 
 Eyeliner
 Marc Jacobs
-Highliner Gel Eye Crayon Eye Liner 
+Highliner Gel Eye Crayon Eye Liner
 26.00
 Pink
 3
@@ -214,7 +214,7 @@ https://www.sephora.com/product/highliner-gel-crayon-P379434?icid2=products%20gr
 
 Eye
 Nars
-Afterglow Eyeshadow Palette 
+Afterglow Eyeshadow Palette
 59.00
 Pink
 3
@@ -290,4 +290,3 @@ date
 casual
 4.4/5 stars
 https://www.sephora.com/product/eye-color-quad-P422568?icid2=products%20grid:p422568&skuId=1987718
-

@@ -115,7 +115,7 @@ public class Cosmetic implements Comparable<Cosmetic>, Contain,FileOutPutFormat 
 	/** additional operation **/
 	@Override
 	public String toString() {
-		return "\nCategory: " + category + "\nBrand: " + brand + "\nName " + name + "\nPrice: $"
+		return "\nCategory: " + category + "\nBrand: " + brand + "\nName: " + name + "\nPrice: $"
 				+ String.format("%,.2f", price) + "\nColor: " + color + "\nReview: " + review + "\nLink: " + link;
 
 	}
@@ -173,13 +173,8 @@ public class Cosmetic implements Comparable<Cosmetic>, Contain,FileOutPutFormat 
 		if (this.equals(C)) {
 			return 0;
 		} else {
-			if (price < C.price) {
-				return -1;
-			} else if (price > C.price) {
-				return 1;
-			} else {
-				return 0;
-			}
+			return Double.compare(price, C.price);
+
 		}
 
 	}
@@ -199,7 +194,7 @@ public class Cosmetic implements Comparable<Cosmetic>, Contain,FileOutPutFormat 
 			return false;
 		} else {
 			Cosmetic C = (Cosmetic) o;
-			return brand.equals(C.brand) && name.equals(C.name);
+			return brand.equalsIgnoreCase(C.brand) && name.equalsIgnoreCase(C.name);
 		}
 	}
 	@Override

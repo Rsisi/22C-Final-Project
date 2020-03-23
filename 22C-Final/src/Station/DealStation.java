@@ -1,6 +1,5 @@
 /**
- * main.java
- * Just for Testing
+ * DealStation.java
  * CIS 22C, Final Project
  */
 package Station;

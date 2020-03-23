@@ -10,9 +10,10 @@
  * CIS 22C Final Project
  */
 package DataStructurePackage;
+
 import java.util.NoSuchElementException;
 
-public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> extends BST<T> {
+public class BSTSecondary<T extends Comparable<T> & Contain & FileOutPutFormat> extends BST<T> {
 
 	/*** CONSTRUCTORS ***/
 
@@ -195,7 +196,7 @@ public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> exte
 	 * @param node the current node to check
 	 * @return whether the data is stored in the tree
 	 */
-	
+
 	private boolean search(T data, Node node) {
 		if (data.CompareSecondaryKey(node.data) == 0) {
 			return true;
@@ -210,6 +211,51 @@ public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> exte
 			}
 			return search(data, node.right);
 		}
+	}
+
+	public BSTSecondary<T> searchLess(T data) {
+		if (root == null) {
+			return null;
+		} else {
+			return searchLess(data, root);
+		}
+	}
+
+	public BSTSecondary<T> searchLess(T data, Node node) {
+		BSTSecondary<T> bst = new BSTSecondary<>();
+		if (node != null) {
+			if(node.left!=null) {
+				if (node.left.data.CompareSecondaryKey(data) < 0) {
+					
+					bst.insertAll(getAll(node.left));
+				}
+			}
+			
+			if (node.data.CompareSecondaryKey(data) < 0) {
+				bst.insert(node.data);
+			}
+			if(node.right!=null) {
+				if (findMin(node.right).CompareSecondaryKey(data) < 0) {
+					bst.insertAll(searchLess(data, node.right));
+				}
+			}
+			
+
+		}
+		return bst;
+	}
+
+	public BSTSecondary<T> getAll(Node node) {
+		BSTSecondary<T> al = new BSTSecondary<>();
+		if (node != null) {
+
+			al.insertAll(getAll(node.left));
+
+			al.insert((T) node.data);
+			al.insertAll(getAll(node.right));
+
+		}
+		return al;
 	}
 
 	/**
@@ -370,7 +416,7 @@ public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> exte
 		if (root == null) {
 			return;
 		} else {
-			inOrderPrint(root,1);
+			inOrderPrint(root, 1);
 		}
 	}
 
@@ -378,13 +424,13 @@ public class BSTSecondary<T extends Comparable<T>&Contain&FileOutPutFormat> exte
 	 * Helper method to inOrderPrint method Prints the data in sorted order to the
 	 * console
 	 */
-	private int inOrderPrint(Node node,int i) {
+	private int inOrderPrint(Node node, int i) {
 		int sortNumber = i;
 		if (node != null) {
-			sortNumber =inOrderPrint(node.left,sortNumber);
-			System.out.print(sortNumber+"."+node.data+"\n\n");
+			sortNumber = inOrderPrint(node.left, sortNumber);
+			System.out.print(sortNumber + "." + node.data + "\n\n");
 			sortNumber++;
-			sortNumber = inOrderPrint(node.right,sortNumber);
+			sortNumber = inOrderPrint(node.right, sortNumber);
 		}
 		return sortNumber;
 	}

@@ -1,4 +1,3 @@
-
 /**
  * main.java
  * Just for Testing
@@ -157,19 +156,50 @@ public class DealStation {
 		System.out.println("");
 		printInTable("|", "+", " ", "Start to search for a Cosmetic!", 60, 2);
 
-		while (!choice.equals("3")) {
+		while (!choice.equals("4")) {
 			System.out.println("\nPlease select from the menu: ");
-			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Exit");
+			System.out.println("1. Search by brand and name\n2. Smart Search\n3. Search Less\n4. Exit");
 			System.out.print("\nEnter you choice: ");
 			choice = input.nextLine();
 			if (choice.equals("1")) {
 				searching(input);
 			} else if (choice.equals("2")) {
-				wishList = smartSearchInterface(input, wishList);
+				wishList.insertAll(smartSearchInterface(input, wishList));
 			} else if (choice.equals("3")) {
-
-			} else {
+				wishList.insertAll(searchLess(input, wishList));
+			} else if(choice.equals("4")) {
+				
+			}
+			else {
 				System.out.println("\nWrong input! Only digit 1, 2 or 3 to exit\n");
+			}
+		}
+		return wishList;
+	}
+
+	public BST<Cosmetic> searchLess(Scanner input, BST<Cosmetic> wishList) {
+		String choice = "";
+		double price = -1;
+		while (!choice.equalsIgnoreCase("x")&&price!=0) {
+			System.out.println("");
+			printInTable("┇", "☞", " ", "Welcome to our Search Less Program!", 60, 6);
+			System.out.print("Search the price range you want!(press \"0\" to Exit)\nLess than: $");
+			price = input.nextDouble();
+			input.nextLine();
+			Cosmetic c = new Cosmetic(price);
+			BSTSecondary<Cosmetic> sl = new BSTSecondary<>();
+			sl = bstPrice.searchLess(c);
+			if (sl == null || sl.isEmpty()) {
+				System.out.println("\nSorry, The product you want is not in our database\n");
+			} else {
+				sl.inOrderPrint();
+				System.out.print("\nDo you want to add this list to your WishList?(yes or no): ");
+				choice = input.nextLine();
+				if (choice.equalsIgnoreCase("yes")) {
+					wishList.insertAll(sl);
+				}
+				System.out.print("Press any key to keep searching or X to exit: ");
+				choice = input.nextLine();
 			}
 		}
 		return wishList;
@@ -275,8 +305,7 @@ public class DealStation {
 			String username = input.nextLine();
 			System.out.print("Enter your email: ");
 			String email = input.nextLine();
-			System.out.print(
-					"Answer the following Security Question.\nWho is your best friend in your childhood?: ");
+			System.out.print("Answer the following Security Question.\nWho is your best friend in your childhood?: ");
 			String securityAnswer = input.nextLine();
 			User temp = new User(username, email, securityAnswer);
 			if (customerHash.search(temp) >= 0 || managerHash.search(temp) >= 0) {
@@ -350,8 +379,8 @@ public class DealStation {
 				}
 				System.out.print("Enter your Email: ");
 				email = input.nextLine();
-				System.out.print(
-						"Answer the following Security Question.\nWho is your best friend in your childhood?: ");
+				System.out
+						.print("Answer the following Security Question.\nWho is your best friend in your childhood?: ");
 				securityAnswer = input.nextLine();
 			}
 
@@ -554,7 +583,8 @@ public class DealStation {
 									"Which occasion do you want to delete(Enter digital 1 - " + occ.size() + "): ");
 							int index = input.nextInt() - 1;
 							input.nextLine();
-							System.out.print("Confirm delete " + c.getOccasion(index) + " from occasion. (yes or no): ");
+							System.out
+									.print("Confirm delete " + c.getOccasion(index) + " from occasion. (yes or no): ");
 							choice = input.nextLine();
 							if (choice.equalsIgnoreCase("yes")) {
 								System.out.println("\n" + c.getOccasion(index) + " has been deleted.");
@@ -651,7 +681,7 @@ public class DealStation {
 			s1 += " ";
 		}
 		if (s.length() % 2 == 0) {
-			return s1 + s + s1;
+			return s1 + s + s1;6
 		} else {
 			return s1 + s + s1 + " ";
 		}

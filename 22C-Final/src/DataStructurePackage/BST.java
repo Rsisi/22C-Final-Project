@@ -20,6 +20,7 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		protected T data;
 		protected Node left;
 		protected Node right;
+		protected Node partent;
 
 		public Node(T data) {
 			this.data = data;
@@ -317,12 +318,14 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		if (data.compareTo(node.data) <= 0) {
 			if (node.left == null) {
 				node.left = new Node(data);
+				node.left.partent = node;
 			} else {
 				insert(data, node.left);
 			}
 		} else {
 			if (node.right == null) {
 				node.right = new Node(data);
+				node.right.partent = node;
 			} else {
 				insert(data, node.right);
 			}

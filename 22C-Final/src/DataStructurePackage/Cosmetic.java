@@ -27,6 +27,10 @@ public class Cosmetic implements Comparable<Cosmetic>, Contain,FileOutPutFormat 
 		this.name = name;
 		this.brand = brand;
 	}
+	
+	public Cosmetic(double price) {
+		this.price = price;
+	}
 
 	/** mutator **/
 	public void setCategory(String category) {

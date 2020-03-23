@@ -1,8 +1,8 @@
 /**
 * Hash.java
-* @author
-* @author
-* CIS 22C, Lab 7
+* @author xinyu zhang
+* @author Alyssa
+* CIS 22C
 */
 package DataStructurePackage;
 import java.io.PrintWriter;

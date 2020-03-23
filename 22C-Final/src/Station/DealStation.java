@@ -1,6 +1,8 @@
 /**
  * DealStation.java
+ * Main class
  * CIS 22C, Final Project
+ * @author xinyuzhang
  */
 package Station;
 

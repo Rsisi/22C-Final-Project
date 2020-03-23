@@ -1,6 +1,7 @@
 /**
  * BSTSecondary.java
  * @author Renmei Gao
+ * @author xinyuzhang
  *  
  * The second Binary Search Tree which inherited the first BST class.
  * Manipulates data include insertion, searching, deletion and sorting 

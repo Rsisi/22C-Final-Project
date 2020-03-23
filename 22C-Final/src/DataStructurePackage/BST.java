@@ -12,10 +12,11 @@
  * 
  */
 package DataStructurePackage;
+
 import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 
-public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
+public class BST<T extends Comparable<T> & Contain & FileOutPutFormat> {
 	protected class Node {
 		protected T data;
 		protected Node left;
@@ -242,7 +243,7 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 			return search(data, node.right);
 		}
 	}
-	
+
 	public T searchAndGet(T data) {
 		if (root == null) {
 			return null;
@@ -250,8 +251,8 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 			return searchAndGet(data, root);
 		}
 	}
-	
-	private T searchAndGet(T data ,Node node) {
+
+	private T searchAndGet(T data, Node node) {
 		if (data.equals(node.data)) {
 			return node.data;
 		} else if (data.compareTo(node.data) < 0) {
@@ -266,7 +267,6 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 			return searchAndGet(data, node.right);
 		}
 	}
-	
 
 	/**
 	 * Determines whether two trees store identical data in the same structural
@@ -323,10 +323,10 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		if (root == null) {
 			root = new Node(data);
 		} else {
-			if(!search(data)) {
+			if (!search(data)) {
 				insert(data, root);
 			}
-			
+
 		}
 	}
 
@@ -354,22 +354,33 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 			}
 		}
 	}
-	
 
-	
-	public void insertAll(BST<T> bst) {
-		if(bst.isEmpty()||bst==null) {
+	/**
+	 * Wrapper method to insert a new bst to a exist bst
+	 * 
+	 * @param bst the BST to insert
+	 * 
+	 */
+	public void insertBST(BST<T> bst) {
+		if (bst.isEmpty() || bst == null) {
 			return;
-		}
-		else {
-			insertAll(bst.root);
+		} else {
+			insertBST(bst.root);
 		}
 	}
-	private void insertAll(Node node) {
-		if(node!=null) {
-			insertAll(node.left);
+
+	/**
+	 * Helper method to insert a new bst to a exist bst
+	 * 
+	 * @param bst  the BST to insert
+	 * @param node the current node in the BST for the correct location in which to
+	 *             insert
+	 */
+	private void insertBST(Node node) {
+		if (node != null) {
+			insertBST(node.left);
 			this.insert(node.data);
-			insertAll(node.right);
+			insertBST(node.right);
 		}
 	}
 
@@ -452,7 +463,7 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 		if (root == null) {
 			return;
 		} else {
-			inOrderPrint(root,1);
+			inOrderPrint(root, 1);
 		}
 	}
 
@@ -463,10 +474,10 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 	private int inOrderPrint(Node node, int i) {
 		int sortNumber = i;
 		if (node != null) {
-			sortNumber =inOrderPrint(node.left,sortNumber);
-			System.out.print(sortNumber+"."+node.data+"\n\n");
+			sortNumber = inOrderPrint(node.left, sortNumber);
+			System.out.print(sortNumber + "." + node.data + "\n\n");
 			sortNumber++;
-			sortNumber = inOrderPrint(node.right,sortNumber);
+			sortNumber = inOrderPrint(node.right, sortNumber);
 		}
 		return sortNumber;
 	}
@@ -493,46 +504,50 @@ public class BST<T extends Comparable<T>& Contain&FileOutPutFormat> {
 			System.out.print(node.data);
 		}
 	}
-	
-	public BST<T> Contain(String s){
-		if(root == null) {
+
+	public BST<T> Contain(String s) {
+		if (root == null) {
 			return null;
-		}
-		else {
-			BST<T> al= new BST<>();
+		} else {
+			BST<T> al = new BST<>();
 			al = Contain(root, s);
 			return al;
 		}
 	}
-	
+
 	private BST<T> Contain(Node node, String s) {
 		BST<T> al = new BST<>();
-		if(node != null) {
-			
-			al.insertAll(Contain(node.left, s));
-			if(node.data.contain(s)) {
-				al.insert((T)node.data);
+		if (node != null) {
+
+			al.insertBST(Contain(node.left, s));
+			if (node.data.contain(s)) {
+				al.insert((T) node.data);
 			}
-			al.insertAll(Contain(node.right, s));
-			
+			al.insertBST(Contain(node.right, s));
+
 		}
 		return al;
 	}
-	
+
+	/**
+	 * Writes the data in sorted order to the file
+	 */
 	public void writeToFile(PrintWriter p) {
-		if(root == null) {
+		if (root == null) {
 			return;
 		}
-		writeToFile(p,root);
+		writeToFile(p, root);
 	}
-	
-	
-	
+
+	/**
+	 * Helper method to writeToFile method Prints the data in sorted order to the
+	 * output file
+	 */
 	private void writeToFile(PrintWriter p, Node node) {
 		if (node != null) {
-			writeToFile(p,node.left);
+			writeToFile(p, node.left);
 			p.println(node.data.fileOutPutFormat());
-			writeToFile(p,node.right);
+			writeToFile(p, node.right);
 		}
 	}
 

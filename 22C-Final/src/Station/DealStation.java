@@ -165,9 +165,9 @@ public class DealStation {
 			if (choice.equals("1")) {
 				searching(input);
 			} else if (choice.equals("2")) {
-				wishList.insertAll(smartSearchInterface(input, wishList));
+				wishList.insertBST(smartSearchInterface(input, wishList));
 			} else if (choice.equals("3")) {
-				wishList.insertAll(searchLess(input, wishList));
+				wishList.insertBST(getSmallerTree(input, wishList));
 			} else if(choice.equals("4")) {
 				
 			}
@@ -178,7 +178,7 @@ public class DealStation {
 		return wishList;
 	}
 
-	public BST<Cosmetic> searchLess(Scanner input, BST<Cosmetic> wishList) {
+	public BST<Cosmetic> getSmallerTree(Scanner input, BST<Cosmetic> wishList) {
 		String choice = "";
 		double price = -1;
 		while (!choice.equalsIgnoreCase("x")&&price!=0) {
@@ -189,7 +189,7 @@ public class DealStation {
 			input.nextLine();
 			Cosmetic c = new Cosmetic(price);
 			BSTSecondary<Cosmetic> sl = new BSTSecondary<>();
-			sl = bstPrice.searchLess(c);
+			sl = bstPrice.getSmallerTree(c);
 			if (sl == null || sl.isEmpty()) {
 				System.out.println("\nSorry, The product you want is not in our database\n");
 			} else {
@@ -197,7 +197,7 @@ public class DealStation {
 				System.out.print("\nDo you want to add this list to your WishList?(yes or no): ");
 				choice = input.nextLine();
 				if (choice.equalsIgnoreCase("yes")) {
-					wishList.insertAll(sl);
+					wishList.insertBST(sl);
 				}
 				System.out.print("Press any key to keep searching or X to exit: ");
 				choice = input.nextLine();
@@ -231,7 +231,7 @@ public class DealStation {
 					System.out.print("\nDo you want to add this list to your WishList?(yes or no): ");
 					choice = input.nextLine();
 					if (choice.equalsIgnoreCase("yes")) {
-						wishList.insertAll(ss);
+						wishList.insertBST(ss);
 					}
 				}
 

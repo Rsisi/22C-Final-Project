@@ -1,7 +1,7 @@
 /**
  * BSTSecondary.java
  * @author Renmei Gao
- * @author xinyuzhang
+ * @author xinyu zhang
  *  
  * The second Binary Search Tree which inherited the first BST class.
  * Manipulates data include insertion, searching, deletion and sorting 
@@ -214,49 +214,69 @@ public class BSTSecondary<T extends Comparable<T> & Contain & FileOutPutFormat> 
 		}
 	}
 
-	public BSTSecondary<T> searchLess(T data) {
+	/**
+	 * Wrapper method to get the smaller tree according the data from the current tree
+	 * 
+	 * @preconditions root!=null 
+	 * @param data compares each node of the current tree 
+	 * @return a new tree saves all the nodes which value is less than the data
+	 * @throws NullPointerException violate the precondition
+	 */
+	public BSTSecondary<T> getSmallerTree(T data) throws NullPointerException {
+
 		if (root == null) {
-			return null;
+			throw new NullPointerException("The database is empty, cannot get the smaller data.");
 		} else {
-			return searchLess(data, root);
+			
+				return getSmallerTree(data, root);
+			
 		}
 	}
 
-	public BSTSecondary<T> searchLess(T data, Node node) {
+	/**
+	 * Helper method of getSmallerTree. Compares with the node first, if the node data is smaller 
+	 * save it to the new bst. then compare the left node, if it's smaller than data, save the whole
+	 * whole subtree of the left to the new bst. last compare the right with data, if it's smaller,
+	 * recurse the previous steps, otherwise doesn't save anything.
+	 * @param data the value to compare with
+	 * @param node the first node of the current bst to compare with
+	 * @return bst saves all the nodes of the current bst which value is smaller the data
+	 */
+	public BSTSecondary<T> getSmallerTree(T data, Node node) {
 		BSTSecondary<T> bst = new BSTSecondary<>();
-		if (node != null) {
-			if(node.left!=null) {
-				if (node.left.data.CompareSecondaryKey(data) < 0) {
-					
-					bst.insertAll(getAll(node.left));
-				}
-			}
-			
-			if (node.data.CompareSecondaryKey(data) < 0) {
-				bst.insert(node.data);
-			}
-			if(node.right!=null) {
-				if (findMin(node.right).CompareSecondaryKey(data) < 0) {
-					bst.insertAll(searchLess(data, node.right));
-				}
-			}
-			
 
+		if (node.data.CompareSecondaryKey(data) < 0) {
+			bst.insert(node.data);
+			if (node.left != null) {
+				if (node.left.data.CompareSecondaryKey(data) < 0) {
+					bst.insertBST(getSubtree(node.left));
+				}
+			}
 		}
+		if (node.right != null) {
+			if (node.right.data.CompareSecondaryKey(data) < 0) {
+				bst.insertBST(getSmallerTree(data, node.right));
+			}
+		}
+
 		return bst;
 	}
 
-	public BSTSecondary<T> getAll(Node node) {
-		BSTSecondary<T> al = new BSTSecondary<>();
+	/**
+	 * 
+	 * @param node get the subtree of the node
+	 * @return a new BST which is the subtree of the node
+	 */
+
+	private BSTSecondary<T> getSubtree(Node node) {
+		BSTSecondary<T> sub = new BSTSecondary<>();
+
 		if (node != null) {
-
-			al.insertAll(getAll(node.left));
-
-			al.insert((T) node.data);
-			al.insertAll(getAll(node.right));
-
+			sub.insertBST(getSubtree(node.left));
+			sub.insert((T) node.data);
+			sub.insertBST(getSubtree(node.right));
 		}
-		return al;
+		return sub;
 	}
 
 	/**
